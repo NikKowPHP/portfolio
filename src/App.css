@@ -40,7 +40,6 @@ html, body {
   flex: 1;
   height: 100%;
   overflow: hidden;
-  border: 1px solid red;
 }
 .text__wrap {
   position:absolute;
@@ -65,7 +64,6 @@ html, body {
   bottom: 0;
   display: grid;
   width: 100%;
-  border: 1px solid green;
   grid-template-columns: repeat(12, 1fr);
   color: rgba(240, 248, 255, 0.76);
 }
@@ -78,6 +76,12 @@ html, body {
 .hero-text div:nth-child(3) {
   grid-area: 3 /3 /4 / 13;
   text-align: right;
+}
+.forward {
+  animation: lift 10s linear infinite;
+}
+.reverse {
+  animation: lift 10s linear infinite;
 }
 
 @keyframes lift {
@@ -93,12 +97,12 @@ html, body {
 }
 @keyframes reverse {
   0% {
-    transform: translate(-50%, -100%) rotate(-90deg);
+    transform: translate(-50%, -1000%) rotate(-90deg);
   }
   50% {
     transform: translate(-50%, -50%) rotate(-90deg);
   }
   100% {
-    transform: translate(-50%, -100%) rotate(-90deg);
+    transform: translate(-50%, -1000%) rotate(-90deg);
   }
 }

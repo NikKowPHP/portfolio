@@ -5,18 +5,18 @@ const App: React.FC = () => {
   const renderHeader = (): JSX.Element => (
     <>
       <section>
-        <div>
-          <div className="hero-text">
+        <div className="hero-text">
+          <div>
             <span>
               <h1 className="hero__header">2023</h1>
             </span>
           </div>
-          <div className="hero-text">
+          <div>
             <span>
               <h1 className="hero__header">PORTFOLIO</h1>
             </span>
           </div>
-          <div className="hero-text">
+          <div>
             <span>
               <h1 className="hero__header">MIKITA KAVALIOU</h1>
             </span>
@@ -25,23 +25,23 @@ const App: React.FC = () => {
         <div className="panel__container">
           <div className="panel">
             <div className="text__wrap reverse">
-              <h1>JUNIOR PHP DEVELOPER</h1>
+              <h1>PHP DEVELOPER</h1>
             </div>
           </div>
           <div className="panel">
-            <div className="text__wrap">
-              <h1>JUNIOR JAVASCRIPT DEVELOPER</h1>
+            <div className="text__wrap forward">
+              <h1>LARAVEL</h1>
             </div>
           </div>
-        </div>
-        <div className="panel">
-          <div className="text__wrap reverse">
-            <h1>REACT LARAVEL</h1>
+          <div className="panel">
+            <div className="text__wrap reverse">
+              <h1>JAVASCRIPT</h1>
+            </div>
           </div>
-        </div>
-        <div className="panel">
-          <div className="text__wrap">
-            <h1>MIKITA KAVALIOU</h1>
+          <div className="panel">
+            <div className="text__wrap forward">
+              <h1>REACT</h1>
+            </div>
           </div>
         </div>
       </section>
