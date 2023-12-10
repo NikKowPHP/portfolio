@@ -12,7 +12,7 @@ interface MouseCoords {
 function lerp(start: number, end: number, t: number) {
   return start * (1 - t) + end * t;
 }
-function setDimensions(canvas: HTMLCanvasElement) {
+function setDimensions(canvas: HTMLCanvasElement):Coordinates[] {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const circleArray: Coordinates[] = [];
@@ -30,6 +30,19 @@ function setDimensions(canvas: HTMLCanvasElement) {
     circleArray.push({ x, y });
   }
   return circleArray;
+}
+function setupMouseTracking(canvas: HTMLCanvasElement): MouseCoords {
+  let mouseCoords: MouseCoords = {
+    x: 0,
+    y: 0,
+    targetX: 0,
+    targetY: 0,
+  };
+  window.addEventListener("mousemove", (e) => {
+    mouseCoords.targetX = e.clientX - canvas.width / 2;
+    mouseCoords.targetY = e.clientY - canvas.width / 2;
+  });
+	return mouseCoords;
 }
 export const animateCanvas = (
   canvas: HTMLCanvasElement,
