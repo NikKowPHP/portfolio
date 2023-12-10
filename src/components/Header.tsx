@@ -43,7 +43,6 @@ import React from "react";
           </div>
         </div>
       </section>
-      <canvas id="headerCanvas"></canvas>
     </>
   );
 	export default Header;
