@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 const App: React.FC = () => {
+
+    interface Coordinates {
+      x: number;
+      y: number;
+    }
+    interface MouseCoords {
+      x: number;
+      y: number;
+      targetX: number;
+      targetY: number;
+    }
+    
   const renderHeader = (): JSX.Element => (
     <>
       <section>
@@ -45,7 +57,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
-      <canvas></canvas>
+      <canvas id="headerCanvas"></canvas>
     </>
   );
 
