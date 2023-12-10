@@ -12,10 +12,12 @@ interface MouseCoords {
 function lerp(start: number, end: number, t: number) {
   return start * (1 - t) + end * t;
 }
-function setDimensions(canvas: HTMLCanvasElement):Coordinates[] {
+function setDimensions(
+  canvas: HTMLCanvasElement,
+  circleArray: Coordinates[]
+): void {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  const circleArray: Coordinates[] = [];
   for (let i = 0; i < 100; i++) {
     let x = 0;
     let y = 0;
@@ -29,9 +31,47 @@ function setDimensions(canvas: HTMLCanvasElement):Coordinates[] {
     y = Math.random() * canvas.height;
     circleArray.push({ x, y });
   }
-  return circleArray;
+  window.addEventListener("resize", () => setDimensions(canvas, circleArray));
 }
-function setupMouseTracking(canvas: HTMLCanvasElement): MouseCoords {
+
+function animate(
+  ctx: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  circleArray: Coordinates[],
+  mouseCoords: MouseCoords
+) {
+  let frame = 0;
+  let iteration = 0;
+  function animateFrame() {
+    ctx.fillStyle = "#dcfe4a";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    mouseCoords.x = lerp(mouseCoords.x, mouseCoords.targetX, 0.075);
+    mouseCoords.y = lerp(mouseCoords.y, mouseCoords.targetY, 0.075);
+    ctx.beginPath();
+    for (let i = 0; i < iteration; i++) {
+      let { x, y } = circleArray[i];
+      ctx.beginPath();
+      ctx.arc(x + mouseCoords.x, y + mouseCoords.y, 2, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.moveTo(canvas.width / 2, canvas.height / 2);
+      ctx.lineTo(x + mouseCoords.x, y + mouseCoords.y);
+      ctx.strokeStyle = "rgba(171,171,171, 0.118";
+      ctx.stroke();
+    }
+    ctx.closePath();
+    frame++;
+    if (frame % 10 == 1 && iteration < circleArray.length) iteration++;
+    requestAnimationFrame(animateFrame);
+  }
+
+  animateFrame();
+}
+export const animateCanvas = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D
+) => {
+  let circleArray: Coordinates[] = [];
+
   let mouseCoords: MouseCoords = {
     x: 0,
     y: 0,
@@ -42,17 +82,8 @@ function setupMouseTracking(canvas: HTMLCanvasElement): MouseCoords {
     mouseCoords.targetX = e.clientX - canvas.width / 2;
     mouseCoords.targetY = e.clientY - canvas.width / 2;
   });
-	return mouseCoords;
-}
-export const animateCanvas = (
-  canvas: HTMLCanvasElement,
-  ctx: CanvasRenderingContext2D
-) => {
-  let circleArray: Coordinates[] = [];
-  let panelHeaders = document.querySelectorAll(".panel h1");
-  let panelHeadersArray: HTMLElement[] =
-    Array.prototype.slice.call(panelHeaders);
-  const heroHeaders = document.querySelectorAll(".hero__header");
-  let heroHeadersArray: HTMLElement[] = Array.prototype.slice.call(heroHeaders);
-  window.addEventListener("resize", () => setDimensions(canvas));
+
+  animate(ctx, canvas, circleArray, mouseCoords);
+
+  setDimensions(canvas, circleArray);
 };
