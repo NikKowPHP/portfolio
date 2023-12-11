@@ -73,10 +73,17 @@ function handleResize(
   canvas: HTMLCanvasElement,
   circleArray: Coordinates[]
 ): void {
+  const oldWidth = canvas.width;
+  const oldHeight = canvas.height;
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  circleArray.length = 0;
-  circleArray.push(...generateCircleArray(canvas));
+  const widthRatio = canvas.width / oldWidth;
+  const heightRatio = canvas.height / oldHeight;
+  circleArray.forEach(circle => {
+    circle.x *= widthRatio;
+    circle.y *= heightRatio;
+  })
 }
 function setDimensions(
   canvas: HTMLCanvasElement,
@@ -97,7 +104,6 @@ function setDimensions(
     y = Math.random() * canvas.height;
     circleArray.push({ x, y });
   }
-  window.addEventListener("resize", () => setDimensions(canvas, circleArray));
 }
 
 function animateCanvas(
