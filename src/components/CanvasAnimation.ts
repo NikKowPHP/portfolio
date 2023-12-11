@@ -1,3 +1,7 @@
+const MAX_CIRCLES = 200;
+const MOVEMENT_THRESHOLD = 0.075;
+const CIRCLE_RADIOUS = 2;
+
 interface Coordinates {
   x: number;
   y: number;
@@ -9,17 +13,14 @@ interface MouseCoords {
   targetY: number;
 }
 
-const MAX_CIRCLES = 200;
-const MOVEMENT_THRESHOLD = 0.075;
-const CIRCLE_RADIOUS = 2;
-
 // Function to create random coordinates within canvas bounds
-function generateRandomCoordinates(canvas: HTMLCanvasElement): Coordinates {
+function generateRandomCircle(canvas: HTMLCanvasElement): Coordinates {
   return {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
   };
 }
+// Function to animate headers
 function animateHeaders() {
   let panelHeaders = document.querySelectorAll(".panel h1");
   let panelHeadersArray: HTMLElement[] =
@@ -27,11 +28,15 @@ function animateHeaders() {
   const heroHeaders = document.querySelectorAll(".hero__header");
   let heroHeadersArray: HTMLElement[] = Array.prototype.slice.call(heroHeaders);
 
+  // Animate hero headers
   heroHeadersArray.forEach((header, idx) => {
     setTimeout(() => {
       header.style.transform = "translateY(0)";
     }, 2000 + idx * 300);
   });
+
+
+  // Animate panel headers
   setTimeout(() => {
     panelHeadersArray.forEach((header, idx) => {
       for (let i = 0; i < 10; i++) {
@@ -39,36 +44,31 @@ function animateHeaders() {
         header.parentElement?.appendChild(clone);
       }
       setTimeout(() => {
-        console.log(header.parentElement);
-
         header.parentElement?.classList.add("active");
       }, 1000 + idx * 100);
     });
   }, 1000);
 }
+
 // Function to generate an array of coordinates within canvas bounds
 function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
   const circleArray: Coordinates[] = [];
-  for (let i = 0; i < MAX_CIRCLES; i++) {
-    let x = 0;
-    let y = 0;
-    while (
-      (x < canvas.width * 0.2 || x > canvas.width * 0.8) &&
-      (y < canvas.height * 0.2 || y > canvas.height * 0.8)
+  while (circleArray.length < MAX_CIRCLES) {
+    const randomCircle = generateRandomCircle(canvas);
+    // Ensure generated circle coordinates are within canvas bounds
+    if (
+      randomCircle.x > canvas.width * 0.2 &&
+      randomCircle.x < canvas.width * 0.8 &&
+      randomCircle.y > canvas.height * 0.2 &&
+      randomCircle.y < canvas.height * 0.8
     ) {
-      const randomCoordinates = generateRandomCoordinates(canvas);
-      x = randomCoordinates.x;
-      y = randomCoordinates.y;
+      circleArray.push(randomCircle);
     }
-    circleArray.push({ x, y });
   }
   return circleArray;
 }
 
-function lerp(start: number, end: number, t: number) {
-  return start * (1 - t) + end * t;
-}
-
+// Function to handle canvas resize and adjust circle coordinates accordingly
 function handleResize(
   canvas: HTMLCanvasElement,
   circleArray: Coordinates[]
@@ -76,36 +76,30 @@ function handleResize(
   const oldWidth = canvas.width;
   const oldHeight = canvas.height;
 
+  // Update canvas dimensions
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
+  // Calculate width and height ratio changes
   const widthRatio = canvas.width / oldWidth;
   const heightRatio = canvas.height / oldHeight;
-  circleArray.forEach(circle => {
+
+  // Update circle coordinates based on new canvas dimensions
+  circleArray.forEach((circle) => {
     circle.x *= widthRatio;
     circle.y *= heightRatio;
-  })
+  });
 }
+
+// Function to set canvas dimensions
 function setDimensions(
   canvas: HTMLCanvasElement,
-  circleArray: Coordinates[]
 ): void {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  for (let i = 0; i < 100; i++) {
-    let x = 0;
-    let y = 0;
-    while (x < canvas.width * 0.2 || x > canvas.width * 0.8) {
-      x = Math.random() * canvas.width;
-    }
-    while (x < canvas.height * 0.2 || y > canvas.height * 0.8) {
-      y = Math.random() * canvas.height;
-    }
-    x = Math.random() * canvas.width;
-    y = Math.random() * canvas.height;
-    circleArray.push({ x, y });
-  }
 }
 
+// Function to animate the canvas
 function animateCanvas(
   ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
@@ -114,6 +108,8 @@ function animateCanvas(
 ) {
   let frame = 0;
   let iteration = 0;
+
+  // Animation frame function
   function animateFrame() {
     ctx.fillStyle = "#dcfe4a";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -150,26 +146,42 @@ function animateCanvas(
     requestAnimationFrame(animateFrame);
   }
 
+  // Start the animation loop
   animateFrame();
 }
 
+//  Function for linear interpolation
+function lerp(start: number, end: number, t: number) {
+  return start * (1 - t) + end * t;
+}
+
+// Function to initialize the canvas
 export function initializeCanvas(
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D
 ): void {
+  //  Generate an array of circle coordinates
   const circleArray: Coordinates[] = generateCircleArray(canvas);
+
+  // Initialize mouse coordinates
   const mouseCoords: MouseCoords = {
     x: 0,
     y: 0,
     targetX: 0,
     targetY: 0,
   };
+  
+  // Event listener for mouse movement to update target coordinates
   window.addEventListener("mousemove", (e) => {
     mouseCoords.targetX = e.clientX - canvas.width / 2;
     mouseCoords.targetY = e.clientY - canvas.width / 2;
   });
+
+  // Event listener for canvas resize to handle resizing and circle adjustments
   window.addEventListener("resize", () => handleResize(canvas, circleArray));
+
+   // Start canvas animation, header animation, and set canvas dimensions
   animateCanvas(ctx, canvas, circleArray, mouseCoords);
   animateHeaders();
-  setDimensions(canvas, circleArray);
+  setDimensions(canvas);
 }
