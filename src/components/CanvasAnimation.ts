@@ -21,6 +21,32 @@ function generateRandomCoordinates(canvas: HTMLCanvasElement): Coordinates {
     y: Math.random() * canvas.height,
   };
 }
+function animateHeaders() {
+  let panelHeaders = document.querySelectorAll(".panel h1");
+  let panelHeadersArray: HTMLElement[] =
+    Array.prototype.slice.call(panelHeaders);
+  const heroHeaders = document.querySelectorAll(".hero__header");
+  let heroHeadersArray: HTMLElement[] = Array.prototype.slice.call(heroHeaders);
+
+  heroHeadersArray.forEach((header, idx) => {
+    setTimeout(() => {
+      header.style.transform = "translateY(0)";
+    }, 2000 + idx * 300);
+  });
+  setTimeout(() => {
+    panelHeadersArray.forEach((header, idx) => {
+      for(let i = 0; i < 10; i++){
+        let clone = header.cloneNode(true);
+        header.parentElement?.appendChild(clone);
+      }
+      setTimeout(() => {
+        console.log(header.parentElement)
+
+        header.parentElement?.classList.add('active');
+      },1000 + idx * 100)
+    })
+  }, 1000)
+}
 // Function to generate an array of coordinates within canvas bounds
 function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
   const circleArray: Coordinates[] = [];
@@ -117,4 +143,6 @@ export const animateCanvas = (
   animate(ctx, canvas, circleArray, mouseCoords);
 
   setDimensions(canvas, circleArray);
+
+  animateHeaders();
 };
