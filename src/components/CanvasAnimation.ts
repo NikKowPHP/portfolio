@@ -9,6 +9,37 @@ interface MouseCoords {
   targetY: number;
 }
 
+const MAX_CIRCLES = 200;
+const MOVEMENT_THRESHOLD = 0.075;
+const CIRCLE_RADIOUS = 2;
+const MOUSE_MOVE_LISTENER_THROTTLE = 200; // ms
+
+// Function to create random coordinates within canvas bounds
+function generateRandomCoordinates(canvas: HTMLCanvasElement): Coordinates {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+  };
+}
+// Function to generate an array of coordinates within canvas bounds
+function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
+  const circleArray: Coordinates[] = [];
+  for (let i = 0; i < MAX_CIRCLES; i++) {
+    let x = 0;
+    let y = 0;
+    while (
+      (x < canvas.width * 0.2 || x > canvas.width * 0.8) &&
+      (y < canvas.height * 0.2 || y > canvas.height * 0.8)
+    ) {
+      const randomCoordinates = generateRandomCoordinates(canvas);
+      x = randomCoordinates.x;
+      y = randomCoordinates.y;
+    }
+    circleArray.push({ x, y });
+  }
+  return circleArray;
+}
+
 function lerp(start: number, end: number, t: number) {
   return start * (1 - t) + end * t;
 }
