@@ -1,1 +1,0 @@
-const myname: string = "Mikita";
