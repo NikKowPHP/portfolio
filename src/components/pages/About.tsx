@@ -4,7 +4,7 @@ import React from 'react';
 const About: React.FC = () => {
 
 	return (
-		<div>
+		<div className='text-white'>
 			About page
 		</div>
 	);

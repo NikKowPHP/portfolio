@@ -5,17 +5,17 @@ import React from "react";
       <section>
         <div className="hero-text">
           <div>
-            <span>
+            <span className="hero__header-container">
               <h1 className="hero__header">2023</h1>
             </span>
           </div>
           <div>
-            <span>
+            <span className="hero__header-container">
               <h1 className="hero__header">PORTFOLIO</h1>
             </span>
           </div>
           <div>
-            <span>
+            <span className="hero__header-container">
               <h1 className="hero__header">MIKITA KAVALIOU</h1>
             </span>
           </div>
@@ -23,7 +23,7 @@ import React from "react";
         <div className="panel__container">
           <div className="panel">
             <div className="text__wrap reverse">
-              <h1>PHP DEVELOPER</h1>
+              <h1>PHP </h1>
             </div>
           </div>
           <div className="panel">

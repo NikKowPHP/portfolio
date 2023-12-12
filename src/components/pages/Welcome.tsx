@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import "./../../styles/welcome.css";
 import Header from "../parts/Header";
 import { initializeCanvas} from "../canvas/CanvasAnimation";
 
