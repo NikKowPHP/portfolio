@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const About: React.FC = () => {
+const NotFound: React.FC = () => {
 
 	return (
 		<div>
@@ -10,4 +10,4 @@ const About: React.FC = () => {
 	);
 }
 
-export default About;
+export default NotFound;
