@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRedirectContext } from "../contexts/RedirectContext";
 
 const Nav: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
+  const { setIsRedirecting } = useRedirectContext();
 
   const animateNavLinks = () => {
     navLinks.forEach((link, idx) => {
@@ -28,8 +30,10 @@ const Nav: React.FC = () => {
     });
   };
   const handleLinkClick = async (navLink: string) => {
+    setIsRedirecting(true)
     await animateNavLinksReverse();
     navigate(navLink);
+    setIsRedirecting(false);
   };
   useEffect(() => {
     animateNavLinks();
