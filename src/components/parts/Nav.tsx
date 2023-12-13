@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Nav: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
 
   const animateNavLinks = () => {
@@ -32,7 +33,7 @@ const Nav: React.FC = () => {
   };
   useEffect(() => {
     animateNavLinks();
-  }, [navLinks]);
+  }, [navLinks,location.pathname]);
 
   useEffect(() => {
     const navLinks = document.querySelectorAll<HTMLElement>(".nav-link");
