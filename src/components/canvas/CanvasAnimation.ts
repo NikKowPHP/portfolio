@@ -20,35 +20,6 @@ function generateRandomCircle(canvas: HTMLCanvasElement): Coordinates {
     y: Math.random() * canvas.height,
   };
 }
-// Function to animate headers
-function animateHeaders() {
-  let panelHeaders = document.querySelectorAll(".panel h1");
-  let panelHeadersArray: HTMLElement[] =
-    Array.prototype.slice.call(panelHeaders);
-  const heroHeaders = document.querySelectorAll(".hero__header");
-  let heroHeadersArray: HTMLElement[] = Array.prototype.slice.call(heroHeaders);
-
-  // Animate hero headers
-  heroHeadersArray.forEach((header, idx) => {
-    setTimeout(() => {
-      header.style.transform = "translateY(0)";
-    }, 2000 + idx * 300);
-  });
-
-
-  // Animate panel headers
-  setTimeout(() => {
-    panelHeadersArray.forEach((header, idx) => {
-      for (let i = 0; i < 10; i++) {
-        let clone = header.cloneNode(true);
-        header.parentElement?.appendChild(clone);
-      }
-      setTimeout(() => {
-        header.parentElement?.classList.add("active");
-      }, 1000 + idx * 100);
-    });
-  }, 1000);
-}
 
 // Function to generate an array of coordinates within canvas bounds
 function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
@@ -182,6 +153,5 @@ export function initializeCanvas(
 
    // Start canvas animation, header animation, and set canvas dimensions
   animateCanvas(ctx, canvas, circleArray, mouseCoords);
-  animateHeaders();
   setDimensions(canvas);
 }
