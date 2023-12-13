@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Nav: React.FC = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Nav: React.FC = () => {
           link.style.transform = "translateY(-100%)";
           completedAnimations++;
           if (completedAnimations === navLinks.length) {
-            resolve(true)
+            resolve(true);
           }
         }, idx * 400);
       });
@@ -33,7 +33,7 @@ const Nav: React.FC = () => {
   };
   useEffect(() => {
     animateNavLinks();
-  }, [navLinks,location.pathname]);
+  }, [navLinks, location.pathname]);
 
   useEffect(() => {
     const navLinks = document.querySelectorAll<HTMLElement>(".nav-link");
@@ -45,17 +45,43 @@ const Nav: React.FC = () => {
     <nav className=" absolute top-0  w-full  bg-transparent  z-10">
       <div className="max-w-4x1 mx-auto">
         <ul className="flex justify-around list-none text-white font-semibold">
-          <li className="nav-link p-4 transition-transform transform -translate-y-full duration-1000 hover:text-lg font-semibold  ">
-            <span onClick={() => handleLinkClick("/welcome")}>Home</span>
+          <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
+            <span
+              className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
+              onClick={() => handleLinkClick("/welcome")}
+            >
+              Home
+            </span>
           </li>
-          <li className="nav-link p-4 transition-transform transform -translate-y-full duration-1000 hover:text-lg font-semibold  ">
-            <span onClick={() => handleLinkClick("/about")}>About</span>
+          <li className="nav-link transition-transform transform -translate-y-full duration-1000">
+            <span
+              className="block p-4  font-semibold cursor-pointer hover:scale-110  text-opacity-75 text-whiteBlue"
+              onClick={() => handleLinkClick("/about")}
+            >
+              About
+            </span>
           </li>
-          <li className="nav-link p-4 transition-transform transform  -translate-y-full duration-1000 hover:scale-110 font-semibold">
-            <span onClick={() => handleLinkClick("/projects")}>Projects</span>
+          <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
+            <span
+              className="block p-4  font-semibold cursor-pointer hover:scale-110
+              text-opacity-75 text-whiteBlue
+              "
+              onClick={() => handleLinkClick("/projects")}
+            >
+              Projects
+            </span>
           </li>
-          <li className="nav-link hover:scale-110 p-4 transition-transform transform  -translate-y-full duration-1000 font-semibold ">
-            <span onClick={() => handleLinkClick("/contact")}>Contact</span>
+          <li
+            className="nav-link transition-transform transform -translate-y-full duration-1000 
+          text-opacity-75 text-whiteBlue
+          "
+          >
+            <span
+              className="block p-4  font-semibold cursor-pointer hover:scale-110  "
+              onClick={() => handleLinkClick("/contact")}
+            >
+              Contact
+            </span>
           </li>
         </ul>
       </div>
