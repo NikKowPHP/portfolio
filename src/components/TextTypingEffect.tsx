@@ -2,24 +2,35 @@ import React, { useEffect, useState } from "react";
 
 interface TextTypingEffectProps {
   text: string;
+  durationInMs: number;
+  onComplete: () => void;
 }
 
-const TextTypingEffect: React.FC<TextTypingEffectProps> = ({ text }) => {
+const TextTypingEffect: React.FC<TextTypingEffectProps> = ({
+  text,
+  durationInMs,
+  onComplete,
+}) => {
   const [displayText, setDisplayText] = useState<string>("");
+  const [currentPosition, setCurrentPosition] = useState<number>(0);
 
   useEffect(() => {
-    let index = 0;
     const textLength = text.length;
     const interval = setInterval(() => {
-      setDisplayText((prevText) => {
-        if (index === textLength) {
+      setCurrentPosition((currentPos) => {
+        if (currentPos === textLength) {
           clearInterval(interval);
-          return prevText;
+          onComplete();
+          return currentPos;
         }
-        return prevText + text.charAt(index++);
+        setDisplayText(text.substring(0, currentPos + 1));
+				return currentPos + 1;
       });
-    }, 30);
+    }, durationInMs);
+    return () => {
+      clearInterval(interval);
+    };
   }, [text]);
-  return <>{displayText}</>;
+  return displayText.substring(0, currentPosition);
 };
 export default TextTypingEffect;
