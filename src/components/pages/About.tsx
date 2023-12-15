@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TextTypingEffect from "../TextTypingEffect";
+import { aboutMe } from "../../assets/infoContent/aboutMe";
 
 const About: React.FC = () => {
-  const texts = [
-    "About Me: I'm a dedicated and enthusiastic junior ",
-    "developer with a deep passion for crafting web applications using PHP Laravel and JavaScript React.",
-    "💼 Seeking Job Opportunities",
-    "My Strengths:",
-    "💡 Innovative Problem Solver: I enjoy tackling complex challenges and finding creative solutions.",
-    "I firmly believe that the tech world is ever-evolving, and I'm committed to continuous learning.",
-  ];
+  const texts = aboutMe;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isTypingComplete, setIsTypingComplete] = useState<boolean>(false);
 
