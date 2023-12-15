@@ -32,6 +32,9 @@ const TextTypingEffect: React.FC<TextTypingEffectProps> = ({
         return currentPos + 1;
       });
     }, durationInMs);
+    if(containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: "smooth", block: "end"})
+    }
 
 
     const cursorInterval = setInterval(() => {
@@ -49,7 +52,7 @@ const TextTypingEffect: React.FC<TextTypingEffectProps> = ({
   }, [text]);
   return (
     <div>
-      <span ref={containerRef} className="type-writter">{displayText.substring(0, currentPosition)}</span>
+      <span ref={containerRef} style={{overflow: "scroll"}} className="type-writter">{displayText.substring(0, currentPosition)}</span>
       {isCursorVisible && !isTypingComplete &&  <span className="cursor">|</span>}
     </div>
   );
