@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "typewritter";
+  src: url(/src/assets/fonts/atwriter.ttf);
+}
+
+@font-face {
+  font-family: "newType";
+  src: url(/src/assets/fonts/JMHTypewriter.ttf);
+}
+.type-writter {
+	font-family: "newType";
+}
