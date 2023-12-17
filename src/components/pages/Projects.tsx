@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TextTypingEffect from "../TextTypingEffect";
+import Card from "../parts/Card";
+
+interface Project {
+  title: string;
+  image: string;
+  description: string;
+  link: string;
+}
 
 const Projects: React.FC = () => {
   const [previosTextComplete, setPreviosTextComplete] =
@@ -12,6 +20,33 @@ const Projects: React.FC = () => {
     setPreviosTextComplete(true);
   };
 
+  const [projectList, setProjectList] = useState<Project[]>([
+    {
+      title: "TimeFlow",
+      image: "TimeFlow-logo.png",
+      description: "dlsfkajsdfk ",
+      link: "timeflow",
+    },
+    {
+      title: "TimeFlow",
+      image: "TimeFlow-logo.png",
+      description: "dlsfkajsdfk ",
+      link: "timeflow",
+    },
+    {
+      title: "TimeFlow",
+      image: "TimeFlow-logo.png",
+      description: "dlsfkajsdfk ",
+      link: "timeflow",
+    },
+    {
+      title: "TimeFlow",
+      image: "TimeFlow-logo.png",
+      description: "dlsfkajsdfk ",
+      link: "timeflow",
+    },
+  ]);
+
   const texts = ["/projects", "Selected projects i've created"];
 
   useEffect(() => {
@@ -23,10 +58,9 @@ const Projects: React.FC = () => {
     }
   }, [previosTextComplete, currentTextIndex]);
 
-
-	const renderHeader = () => {
-		return (
-      <header className="projects-header__title flex flex-col items-center justify-center w-full">
+  const renderHeader = () => {
+    return (
+      <header className="projects-header__title flex flex-col items-center justify-center ">
         {completedBlocks.includes(0) && (
           <h1 className="text-center flex-1">
             <TextTypingEffect
@@ -46,12 +80,26 @@ const Projects: React.FC = () => {
           </h3>
         )}
       </header>
-		)
-	}
+    );
+  };
+  const renderProjects = () => {
+    return projectList.map((project, index) => {
+      return (
+        <Card
+          key={index}
+          title={project.title}
+          description={project.description}
+          image={project.image}
+          link={project.link}
+        />
+      );
+    });
+  };
 
   return (
-    <div className="text-white mt-20 w-full">
-			{renderHeader()}
+    <div className="text-white mt-20 h-auto">
+      {renderHeader()}
+      <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">{renderProjects()}</div>
     </div>
   );
 };
