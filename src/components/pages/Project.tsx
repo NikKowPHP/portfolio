@@ -1,47 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { json, useLocation } from "react-router-dom";
 
-interface ProjectProps {
-  image: string;
+interface ProjectData{
   title: string;
   description: string;
+  thumbnail: string;
+  images: string[];
+  id: number;
   link: string;
-  onClick: (link: string) => void;
+  features: string[];
 }
 
-const Card: React.FC<ProjectProps> = ({
-  image,
-  title,
-  description,
-  link,
-  onClick,
-}) => {
-  const alt = image.slice(0, -4);
+const Project: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const [data, setData] = useState<ProjectData[]>([]);
 
+  const location = useLocation();
+  const segments = location.pathname.split("/");
+  const projectName = segments[segments.length - 1];
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/src/data/data.json");
+      if (!response.ok) throw new Error("Failed to fetch");
 
-  return (
-    <div
-      style={{ transform: "translateY(250%)" }}
-      className="card transition-transform transform  duration-500 m-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-    >
-      <div className="flex justify-center mt-5" onClick={() => onClick(link)}>
-        <img
-          className="rounded-t-lg rounded-b-lg w-1/2  h-auto"
-          src={`/src/assets/images/${image}`}
-          alt={alt}
-        />
-      </div>
-      <div className="p-5">
-        <div onClick={() => onClick(link)}>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
-            {title}
-          </h5>
+      const jsonData = await response.json();
+      setData(jsonData);
+
+      const foundProject = jsonData.projects.find(
+        (project: ProjectData) => project.title === projectName
+      );
+
+      setSelectedProject(foundProject || null);
+    } catch (error) {
+      console.error(" Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+		fetchData();
+	}, [projectName]);
+
+  const renderProjectInfo = () => {
+    return (
+      selectedProject && (
+        <div className="text-white">
+          latina!
+          <div className="flex justify-center mt-5"></div>
         </div>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
+      )
+    );
+  };
+
+  return renderProjectInfo();
 };
-export default Card;
+export default Project;
