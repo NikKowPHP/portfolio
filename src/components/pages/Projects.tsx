@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TextTypingEffect from "../TextTypingEffect";
 import Card from "../parts/Card";
+import { useRedirectContext } from "../contexts/RedirectContext";
+import { useNavigate } from "react-router-dom";
 
 interface Project {
   title: string;
@@ -10,6 +12,8 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
+  const navigate = useNavigate();
+  const {setIsRedirecting} = useRedirectContext();
   const [cards, setCards] = useState<HTMLElement[]>([]);
   const [previosTextComplete, setPreviosTextComplete] =
     useState<boolean>(false);
@@ -29,27 +33,26 @@ const Projects: React.FC = () => {
       link: "timeflow",
     },
     {
-      title: "TimeFlow",
+      title: "Twitter Clone",
       image: "TimeFlow-logo.png",
       description: "dlsfkajsdfk ",
-      link: "timeflow",
+      link: "twitter-clone",
     },
     {
-      title: "TimeFlow",
+      title: "CMS System",
       image: "TimeFlow-logo.png",
       description: "dlsfkajsdfk ",
-      link: "timeflow",
+      link: "cms-system",
     },
     {
-      title: "TimeFlow",
+      title: "YouTube Clone",
       image: "TimeFlow-logo.png",
       description: "dlsfkajsdfk ",
-      link: "timeflow",
+      link: "youtube-clone",
     },
   ]);
 
-
-	const animateCards = () => {
+  const animateCards = () => {
     cards.forEach((card, idx) => {
       setTimeout(() => {
         card.style.transform = "translateY(0)";
@@ -62,7 +65,7 @@ const Projects: React.FC = () => {
       let completedAnimations = 0;
       cards.forEach((card, idx) => {
         setTimeout(() => {
-          card.style.transform = "translateY(100%)";
+          card.style.transform = "translateY(250%)";
           completedAnimations++;
           if (completedAnimations === cards.length) {
             resolve(true);
@@ -71,15 +74,14 @@ const Projects: React.FC = () => {
       });
     });
   };
-	useEffect(() => {
-		animateCards();
-	}, [cards])
-	useEffect(() => {
+  useEffect(() => {
+    animateCards();
+  }, [cards]);
+  useEffect(() => {
     const cards = document.querySelectorAll<HTMLElement>(".card");
-    const cardsArray : HTMLElement[] = Array.from(cards);
+    const cardsArray: HTMLElement[] = Array.from(cards);
     setCards(cardsArray);
   }, []);
-
 
   const texts = ["/projects", "Selected projects i've created"];
 
@@ -91,6 +93,13 @@ const Projects: React.FC = () => {
       }, 1000);
     }
   }, [previosTextComplete, currentTextIndex]);
+
+  const onCardClick = async (link: string) => {
+    setIsRedirecting(true)
+    await animateCardsReverse();
+    navigate(link);
+    setIsRedirecting(false);
+  };
 
   const renderHeader = () => {
     return (
@@ -125,6 +134,7 @@ const Projects: React.FC = () => {
           description={project.description}
           image={project.image}
           link={project.link}
+          onClick={onCardClick}
         />
       );
     });
@@ -133,7 +143,9 @@ const Projects: React.FC = () => {
   return (
     <div className="text-white mt-20 h-auto">
       {renderHeader()}
-      <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">{renderProjects()}</div>
+      <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">
+        {renderProjects()}
+      </div>
     </div>
   );
 };
