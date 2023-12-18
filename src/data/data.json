@@ -4,6 +4,7 @@
       "id": 1,
       "title": "TimeFlow",
       "description": "TimeFlow is a powerful time management tool designed to make your life or your small team more organized and efficient. With advanced calendar and task handling capabilities, TimeFlow allows you to take control of your schedule and easily rearrange tasks for personal use or for your team. Say goodbye to the chaos of managing your time and embrace a more productive, stress-free lifestyle",
+      "shortDescription": "A powerful time management tool for organizing tasks",
       "features": [
         "Task Management: Create, organize, and prioritize tasks with ease. Customize task details, set due dates, and categorize them [coming soon] for a structured workflow.",
         "Notifications and Reminders: Stay on top of your commitments with customizable notifications and reminders. Never miss an important event or deadline again. ",
@@ -12,8 +13,17 @@
         "[coming soon] Data Analytics: Gain insights into your time management habits through visual analytics. Identify areas where you can improve and optimize your workflow.",
         "[coming soon] Advanced Calendar Integration: Seamlessly sync your existing calendars, such as Google Calendar, Apple Calendar, or Microsoft Outlook, to have all your events and appointments in one place."
       ],
-      "image": "path/to/image1.jpg",
-      "link": "/projects/project1"
+      "thumbnail": "/src/assets/images/TimeFlow-thumbnail.png",
+      "images": [
+        "timeflow/TimeFlow-calendarMonthly.png",
+        "timeflow/TimeFlow-calendarWeekly.png",
+        "timeflow/TimeFlow-calendarAgenda.png",
+        "timeflow/TimeFlow-aside.png",
+        "timeflow/TimeFlow-createTask.png",
+        "timeflow/TimeFlow-taskInfo.png",
+        "timeflow/TimeFlow-profileInfo.png"
+      ],
+      "link": "timeflow"
     },
     {
       "id": 2,
