@@ -13,7 +13,7 @@ interface Project {
 
 const Projects: React.FC = () => {
   const navigate = useNavigate();
-  const {setIsRedirecting} = useRedirectContext();
+  const { setIsRedirecting } = useRedirectContext();
   const [cards, setCards] = useState<HTMLElement[]>([]);
   const [previosTextComplete, setPreviosTextComplete] =
     useState<boolean>(false);
@@ -95,7 +95,7 @@ const Projects: React.FC = () => {
   }, [previosTextComplete, currentTextIndex]);
 
   const onCardClick = async (link: string) => {
-    setIsRedirecting(true)
+    setIsRedirecting(true);
     await animateCardsReverse();
     navigate(link);
     setIsRedirecting(false);
