@@ -10,6 +10,7 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
+  const [cards, setCards] = useState<HTMLElement[]>([]);
   const [previosTextComplete, setPreviosTextComplete] =
     useState<boolean>(false);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
@@ -46,6 +47,39 @@ const Projects: React.FC = () => {
       link: "timeflow",
     },
   ]);
+
+
+	const animateCards = () => {
+    cards.forEach((card, idx) => {
+      setTimeout(() => {
+        card.style.transform = "translateY(0)";
+      }, 3000 + idx * 400);
+    });
+  };
+
+  const animateCardsReverse = (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      let completedAnimations = 0;
+      cards.forEach((card, idx) => {
+        setTimeout(() => {
+          card.style.transform = "translateY(100%)";
+          completedAnimations++;
+          if (completedAnimations === cards.length) {
+            resolve(true);
+          }
+        }, idx * 400);
+      });
+    });
+  };
+	useEffect(() => {
+		animateCards();
+	}, [cards])
+	useEffect(() => {
+    const cards = document.querySelectorAll<HTMLElement>(".card");
+    const cardsArray : HTMLElement[] = Array.from(cards);
+    setCards(cardsArray);
+  }, []);
+
 
   const texts = ["/projects", "Selected projects i've created"];
 
