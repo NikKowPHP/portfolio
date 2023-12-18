@@ -1,0 +1,39 @@
+import { useEffect, useState } from "react";
+interface ProjectData {
+  title: string;
+  description: string;
+  thumbnail: string;
+  images: string[];
+  id: number;
+  link: string;
+  features: string[];
+}
+interface AboutMe {
+  title: string;
+  description: string[];
+}
+interface Data {
+  projects: ProjectData[];
+  about: AboutMe;
+}
+export const useData = () => {
+  const [data, setData] = useState<ProjectData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/src/data/data.json");
+      if (!response.ok) throw new Error("Failed to fetch");
+
+      const jsonData: Data = await response.json();
+      setData(jsonData.projects);
+
+
+    } catch (error) {
+      console.error(" Error fetching data: ", error);
+    } finally {
+			setLoading(false)
+		}
+  };
+};
