@@ -10,35 +10,39 @@ import Project from "./pages/Project";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/portfolio",
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/welcome" />,
+        path: "/portfolio",
+        element: <Navigate to="/portfolio/welcome" />,
       },
       {
-        path: "/welcome",
+        path: "/portfolio",
         element: <Welcome />,
       },
       {
-        path: "/about",
+        path: "/portfolio/welcome",
+        element: <Welcome />,
+      },
+      {
+        path: "/portfolio/about",
         element: <About />,
       },
       {
-        path: "/contact",
+        path: "/portfolio/contact",
         element: <Contact />,
       },
       {
-        path: "/projects",
+        path: "/portfolio/projects",
         element: <Projects />,
       },
       {
-        path: "projects/:project",
+        path: "/portfolio/projects/:project",
         element: <Project />,
       },
       {
-        path: "*",
+        path: "/portfolio/*",
         element: <NotFound />,
       },
     ],
