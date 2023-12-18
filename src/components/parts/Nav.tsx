@@ -52,7 +52,7 @@ const Nav: React.FC = () => {
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
             <span
               className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick("/welcome")}
+              onClick={() => handleLinkClick("welcome")}
             >
               Home
             </span>
@@ -60,7 +60,7 @@ const Nav: React.FC = () => {
           <li className="nav-link transition-transform transform -translate-y-full duration-1000">
             <span
               className="block p-4  font-semibold cursor-pointer hover:scale-110  text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick("/about")}
+              onClick={() => handleLinkClick("about")}
             >
               About
             </span>
@@ -70,7 +70,7 @@ const Nav: React.FC = () => {
               className="block p-4  font-semibold cursor-pointer hover:scale-110
               text-opacity-75 text-whiteBlue
               "
-              onClick={() => handleLinkClick("/projects")}
+              onClick={() => handleLinkClick("projects")}
             >
               Projects
             </span>
@@ -82,7 +82,7 @@ const Nav: React.FC = () => {
           >
             <span
               className="block p-4  font-semibold cursor-pointer hover:scale-110  "
-              onClick={() => handleLinkClick("/contact")}
+              onClick={() => handleLinkClick("contact")}
             >
               Contact
             </span>
