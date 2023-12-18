@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "TimeFlow",
+      "description": "TimeFlow is a powerful time management tool designed to make your life or your small team more organized and efficient. With advanced calendar and task handling capabilities, TimeFlow allows you to take control of your schedule and easily rearrange tasks for personal use or for your team. Say goodbye to the chaos of managing your time and embrace a more productive, stress-free lifestyle",
+      "features": [
+        "Task Management: Create, organize, and prioritize tasks with ease. Customize task details, set due dates, and categorize them [coming soon] for a structured workflow.",
+        "Notifications and Reminders: Stay on top of your commitments with customizable notifications and reminders. Never miss an important event or deadline again. ",
+        "[coming soon] Drag-and-Drop Task Rearrangement: Effortlessly rearrange your tasks in the calendar by simply dragging and dropping. Adjust your schedule on the fly to adapt to changing priorities.",
+        "[coming soon] Team Collaboration: Share your schedule with team members and collaborators. Collaborative features allow teams to work together and allocate tasks efficiently.",
+        "[coming soon] Data Analytics: Gain insights into your time management habits through visual analytics. Identify areas where you can improve and optimize your workflow.",
+        "[coming soon] Advanced Calendar Integration: Seamlessly sync your existing calendars, such as Google Calendar, Apple Calendar, or Microsoft Outlook, to have all your events and appointments in one place."
+      ],
+      "image": "path/to/image1.jpg",
+      "link": "/projects/project1"
+    },
+    {
+      "id": 2,
+      "title": "Project 2",
+      "description": "Description of Project 2...",
+      "image": "path/to/image2.jpg",
+      "link": "/projects/project2"
+    }
+  ],
+  "about": {
+    "title": "About Me",
+    "description": [
+      "My name is Mikita Kavaliou, and I reside in Poland. I am a dedicated junior web developer deeply passionate about coding and creating.",
+      "My skill set:",
+      "PHP, JavaScript, MySQL, CSS, HTML, Tailwind CSS, Laravel, React, TypeScript, and Docker. Over the past year, I've been actively developing personal projects, acquiring both practical and theoretical knowledge in the process.",
+      "I've maintained an unbroken streak of daily work for an entire year, as evidenced by my consistent activity on GitHub. I thrive on tackling complex problems, believing in the 'learning by doing' approach.",
+      "Some interesting facts about me:",
+      "I am a languages enthusiast speaking in 5 languages, constantly learning new ones. I've devised my own language learning methods and aim to create an app based on these techniques.",
+      "I strongly believe in the mind-body connection. I engage in daily sports activities like 6:30 AM morning runs, calisthenics, and breakdancing to improve my physical fitness. Additionally, I exclusively commute by cycling, foregoing public transportation.",
+      "Cooking is another passion of mine. I prepare nutritionally rich meals, considering my body a temple that fuels my productivity and health.",
+      "I am fascinated by neuroscience and dedicate my free time to studying my mind and body. I'm also keen on developing my understanding of stoic philosophy and integrating it into my daily life."
+    ]
+  }
+}
