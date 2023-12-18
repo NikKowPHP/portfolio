@@ -1,5 +1,6 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { json, useLocation } from "react-router-dom";
+import TextTypingEffect from "../TextTypingEffect";
 
 interface ProjectData {
   title: string;
@@ -20,9 +21,12 @@ interface Data {
 }
 
 const Project: React.FC = () => {
+  const corouselRef = useRef<HTMLDivElement | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
     null
   );
+  const [isTypingComplete, setIsTypingComplete] = useState<boolean>(false);
+
   const [data, setData] = useState<ProjectData[]>([]);
 
   const location = useLocation();
@@ -42,9 +46,8 @@ const Project: React.FC = () => {
       const jsonData: Data = await response.json();
       setData(jsonData.projects);
 
-			const foundProject: ProjectData | undefined = findProject(jsonData);
+      const foundProject: ProjectData | undefined = findProject(jsonData);
       setSelectedProject(foundProject || null);
-
     } catch (error) {
       console.error(" Error fetching data: ", error);
     }
@@ -78,12 +81,34 @@ const Project: React.FC = () => {
       </div>
     );
   };
+  useEffect(() => {
+    isTypingComplete &&
+      corouselRef &&
+      corouselRef.current &&
+      (corouselRef.current.style.transform = "translateY(0)");
+  }, [isTypingComplete]);
+
+  const handleTypingComplete = () => {
+    setIsTypingComplete(true);
+  };
 
   const renderProjectInfo = () => {
     return (
       selectedProject && (
-        <div className="flex justify-center mt-5">
-          <div className="max-w-4x1 mx-auto">{renderCorousel()}</div>
+        <div className="text-white flex justify-center flex-col mt-40 overflow-hidden">
+          <h1>
+            <TextTypingEffect
+              text={selectedProject.title}
+              durationInMs={100}
+              onComplete={handleTypingComplete}
+            />
+          </h1>
+          <div
+            ref={corouselRef}
+            className="max-w-4x1 mx-auto transform ease-in-out translate-y-full duration-1000"
+          >
+            {isTypingComplete && renderCorousel()}
+          </div>
         </div>
       )
     );
