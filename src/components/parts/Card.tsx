@@ -12,7 +12,7 @@ const Card: React.FC<CardProps> = ({ image, title, description, link }) => {
 
   const alt = image.slice(0, -4);
   return (
-    <div className=" m-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div style={{transform: 'translateY(250%)'}} className="card transition-transform transform  duration-500 m-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <Link className="flex justify-center mt-5" to={`/projects/${link}`}>
         <img
           className="rounded-t-lg rounded-b-lg w-1/2  h-auto"
