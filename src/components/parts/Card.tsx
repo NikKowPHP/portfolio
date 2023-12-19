@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({
       <div className="flex justify-center mt-5" onClick={() => onClick(link)}>
         <img
           className="rounded-t-lg rounded-b-lg w-1/2  h-auto"
-          src={`/src/assets/images/${image}`}
+          src={`./src/assets/images/${image}`}
           alt={alt}
         />
       </div>

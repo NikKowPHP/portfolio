@@ -23,7 +23,7 @@ export const useData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/src/data/data.json");
+      const response = await fetch("./src/data/data.json");
       if (!response.ok) throw new Error("Failed to fetch");
 
       const jsonData: Data = await response.json();

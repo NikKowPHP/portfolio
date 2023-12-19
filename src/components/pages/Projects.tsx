@@ -28,7 +28,7 @@ const Projects: React.FC = () => {
   const [projectList, setProjectList] = useState<Project[]>([
     {
       title: "TimeFlow",
-      image: "TimeFlow-logo.png",
+      image: "timeflow/TimeFlow-logo.png",
       description: "dlsfkajsdfk ",
       link: "timeflow",
     },
