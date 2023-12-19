@@ -22,6 +22,7 @@ interface Data {
 
 const Project: React.FC = () => {
   const corouselRef = useRef<HTMLDivElement | null>(null);
+  const projectDescriptionRef = useRef<HTMLDivElement | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
     null
   );
@@ -52,17 +53,28 @@ const Project: React.FC = () => {
       console.error(" Error fetching data: ", error);
     }
   };
-  useEffect(() => {
-    console.log(selectedProject);
-  }, [selectedProject]);
 
   useEffect(() => {
     fetchData();
   }, [projectName]);
-  const renderCorousel = () => {
+
+  useEffect(() => {
+    if (isTypingComplete) {
+      corouselRef &&
+        corouselRef.current &&
+        (corouselRef.current.style.transform = "translateY(0)");
+      setTimeout(() => {
+        projectDescriptionRef.current &&
+          (projectDescriptionRef.current.style.transform = "translateY(0)");
+      }, 1000);
+    }
+  }, [isTypingComplete]);
+
+
+  const renderCorousel: () => ReactElement = () => {
     return (
-      <div className="relative">
-        <div className="overflow-hidden h-96">
+      <div className="relative mb-5 corousel">
+        <div className="overflow-hidden ">
           <div className="flex">
             {selectedProject?.images.map((image, index) => (
               <div
@@ -81,26 +93,29 @@ const Project: React.FC = () => {
       </div>
     );
   };
-  useEffect(() => {
-    isTypingComplete &&
-      corouselRef &&
-      corouselRef.current &&
-      (corouselRef.current.style.transform = "translateY(0)");
-  }, [isTypingComplete]);
 
-  const handleTypingComplete = () => {
-    setIsTypingComplete(true);
-  };
-
-  const renderProjectInfo = () => {
+  const renderDescription: () => ReactElement | null = () => {
     return (
       selectedProject && (
-        <div className="text-white flex justify-center flex-col mt-40 overflow-hidden">
-          <h1>
+        <div
+          ref={projectDescriptionRef}
+          className="project-description transform translate-y-full duration-500"
+        >
+          {selectedProject.description}
+        </div>
+      )
+    );
+  };
+
+  const renderProjectInfo: () => ReactElement | null = () => {
+    return (
+      selectedProject && (
+        <div className="text-white flex justify-center flex-col mt-20 overflow-hidden">
+          <h1 className="text-center">
             <TextTypingEffect
               text={selectedProject.title}
               durationInMs={100}
-              onComplete={handleTypingComplete}
+              onComplete={() => setIsTypingComplete(true)}
             />
           </h1>
           <div
@@ -108,6 +123,7 @@ const Project: React.FC = () => {
             className="max-w-4x1 mx-auto transform ease-in-out translate-y-full duration-1000"
           >
             {isTypingComplete && renderCorousel()}
+            {renderDescription()}
           </div>
         </div>
       )
