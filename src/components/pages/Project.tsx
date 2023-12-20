@@ -97,7 +97,7 @@ const Project: React.FC = () => {
       selectedProject && (
         <div
           ref={projectDescriptionRef}
-          className="project-description transform translate-y-full duration-500"
+          className="max-w-[1200px] lg:max-w-[1200px] md:max-w-full sm:max-w-full p-4 project-description transform translate-y-full duration-500 text-lg"
         >
           {selectedProject.description}
         </div>
@@ -109,7 +109,7 @@ const Project: React.FC = () => {
     return (
       selectedProject && (
         <div className="text-white flex justify-center flex-col mt-20 overflow-hidden">
-          <h1 className="text-center">
+          <h1 className="text-center lg:text-9xl">
             <TextTypingEffect
               text={selectedProject.title}
               durationInMs={100}
