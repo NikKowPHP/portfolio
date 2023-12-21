@@ -3,8 +3,8 @@
     {
       "id": 1,
       "title": "TimeFlow",
-      "description": "TimeFlow is a powerful time management tool designed to make your life or your small team more organized and efficient. With advanced calendar and task handling capabilities, TimeFlow allows you to take control of your schedule and easily rearrange tasks for personal use or for your team. Say goodbye to the chaos of managing your time and embrace a more productive, stress-free lifestyle",
-      "shortDescription": "A powerful time management tool for organizing tasks",
+      "description": "TimeFlow is a robust time management tool designed to enhance personal or small team organization and efficiency. Its advanced calendar and task handling features empower users to seize control of their schedules, effortlessly rearranging tasks for individual or team use. Say farewell to chaotic time management and welcome a more productive, stress-free lifestyle. Built using PHP, Laravel, MySQL, JavaScript, React.js, CSS, HTML, Axios, and Vite, it's an evolving platform aimed at streamlining time management with upcoming features like task customization, notifications, drag-and-drop task rearrangement, team collaboration, data analytics, and calendar integration.",
+      "shortDescription": "TimeFlow - Empower your time management. This tool, built with PHP, Laravel, MySQL, JavaScript, React.js, CSS, and HTML, offers advanced calendar and task handling features. Organize tasks effortlessly for personal or team use",
       "features": [
         "Task Management: Create, organize, and prioritize tasks with ease. Customize task details, set due dates, and categorize them [coming soon] for a structured workflow.",
         "Notifications and Reminders: Stay on top of your commitments with customizable notifications and reminders. Never miss an important event or deadline again. ",
@@ -13,7 +13,7 @@
         "[coming soon] Data Analytics: Gain insights into your time management habits through visual analytics. Identify areas where you can improve and optimize your workflow.",
         "[coming soon] Advanced Calendar Integration: Seamlessly sync your existing calendars, such as Google Calendar, Apple Calendar, or Microsoft Outlook, to have all your events and appointments in one place."
       ],
-      "thumbnail": "/src/assets/images/TimeFlow-thumbnail.png",
+      "thumbnail": "/timeflow/TimeFlow-logo.png",
       "images": [
         "timeflow/TimeFlow-calendarMonthly.png",
         "timeflow/TimeFlow-calendarWeekly.png",
@@ -27,10 +27,20 @@
     },
     {
       "id": 2,
-      "title": "Project 2",
-      "description": "Description of Project 2...",
-      "image": "path/to/image2.jpg",
-      "link": "/projects/project2"
+      "title": "Twitter Clone",
+      "shortDescription": "A Twitter-inspired pet project created for skill practice. Built with PHP, Laravel, MySQL, HTML, and CSS Blade, it mimics Twitter's interface and functions, featuring user authentication, post creation, reposting, likes, image attachments, and follow/unfollow capabilities",
+      "description": "The pet project is a Twitter clone meticulously crafted to mirror the original platform's style and functionality. It's built using PHP with the Laravel framework, employing MySQL for database management and HTML/CSS Blade for front-end development. The primary features include user authentication, the ability to follow/unfollow users, create and repost tweets, like posts, and attach images to tweets. This project serves as a practical endeavor to enhance and apply skills in web development, replicating key functionalities of a popular social media platform within a controlled environment.",
+      "thumbnail": "twitter/twitter-logo.png",
+      "images": [
+        "twitter/twitter-welcome.png",
+        "twitter/twitter-register.png",
+        "twitter/twitter-loginForm.png",
+        "twitter/twitter-join.png",
+        "twitter/twitter-home.png",
+        "twitter/twitter-postWritting.png",
+        "twitter/twitter-twitter-follow.png"
+      ],
+      "link": "twitter"
     }
   ],
   "about": {
