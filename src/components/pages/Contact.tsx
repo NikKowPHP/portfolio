@@ -1,24 +1,34 @@
 import React, { useRef } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs, {EmailJSResponseStatus} from "@emailjs/browser";
 
-interface Data {
 
+interface EmailSendResult {
+  text: string;
 }
 
 const Contact: React.FC = () => {
-	const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
 
-
-
-	const sendEmail = (e: Event) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_2a5v99a', 'template_eb3m4nu', form.current, 'MBv-C3sqmGh53tFYY')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
+    if (form.current) {
+      emailjs
+        .sendForm(
+          "service_2a5v99a",
+          "template_eb3m4nu",
+          form.current,
+          "MBv-C3sqmGh53tFYY"
+        )
+        .then(
+          (result: EmailJSResponseStatus<EmailSendResult>) => {
+            console.log(result.text);
+          },
+          (error: EmailJSResponseStatus<EmailSendResult>) => {
+            console.log(error.text);
+          }
+        );
+    }
   };
 
   const renderForm = () => {
@@ -34,8 +44,10 @@ const Contact: React.FC = () => {
       </form>
     );
   };
-  return <div>
-		<div className="mt-20 text-white ">{renderForm()}</div>
-	</div>;
+  return (
+    <div>
+      <div className="mt-20 text-white ">{renderForm()}</div>
+    </div>
+  );
 };
 export default Contact;
