@@ -3,6 +3,7 @@ import TextTypingEffect from "../TextTypingEffect";
 import Card from "../parts/Card";
 import { useRedirectContext } from "../contexts/RedirectContext";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../hooks/useData";
 
 interface Project {
   title: string;
@@ -20,37 +21,19 @@ const Projects: React.FC = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
   const [completedBlocks, setCompletedBlocks] = useState<number[]>([0]);
 
+  const texts = ["/projects", "Selected projects i've created"];
+
+  const { data, fetchData } = useData();
+
   const handleTypingComplete = (index: number) => {
     setCompletedBlocks((prevBlocks) => [...prevBlocks, index + 1]);
     setPreviosTextComplete(true);
   };
 
-  const [projectList, setProjectList] = useState<Project[]>([
-    {
-      title: "TimeFlow",
-      image: "timeflow/TimeFlow-logo.png",
-      description: "dlsfkajsdfk ",
-      link: "timeflow",
-    },
-    {
-      title: "Twitter Clone",
-      image: "TimeFlow-logo.png",
-      description: "dlsfkajsdfk ",
-      link: "twitter-clone",
-    },
-    {
-      title: "CMS System",
-      image: "TimeFlow-logo.png",
-      description: "dlsfkajsdfk ",
-      link: "cms-system",
-    },
-    {
-      title: "YouTube Clone",
-      image: "TimeFlow-logo.png",
-      description: "dlsfkajsdfk ",
-      link: "youtube-clone",
-    },
-  ]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
 
   const animateCards = () => {
     cards.forEach((card, idx) => {
@@ -75,15 +58,18 @@ const Projects: React.FC = () => {
     });
   };
   useEffect(() => {
-    animateCards();
+    if (cards.length > 0) {
+      animateCards();
+    }
   }, [cards]);
-  useEffect(() => {
-    const cards = document.querySelectorAll<HTMLElement>(".card");
-    const cardsArray: HTMLElement[] = Array.from(cards);
-    setCards(cardsArray);
-  }, []);
 
-  const texts = ["/projects", "Selected projects i've created"];
+  useEffect(() => {
+    if (data) {
+      const cards = document.querySelectorAll<HTMLElement>(".card");
+      const cardsArray: HTMLElement[] = Array.from(cards);
+      setCards(cardsArray);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (previosTextComplete) {
@@ -97,7 +83,7 @@ const Projects: React.FC = () => {
   const onCardClick = async (link: string) => {
     setIsRedirecting(true);
     await animateCardsReverse();
-    navigate(link);
+    navigate(`./${link}`);
     setIsRedirecting(false);
   };
 
@@ -126,18 +112,21 @@ const Projects: React.FC = () => {
     );
   };
   const renderProjects = () => {
-    return projectList.map((project, index) => {
-      return (
-        <Card
-          key={index}
-          title={project.title}
-          description={project.description}
-          image={project.image}
-          link={project.link}
-          onClick={onCardClick}
-        />
-      );
-    });
+    return (
+      data &&
+      data.projects.map((project, index) => {
+        return (
+          <Card
+            key={index}
+            title={project.title}
+            description={project.shortDescription}
+            image={project.thumbnail}
+            link={project.link}
+            onClick={onCardClick}
+          />
+        );
+      })
+    );
   };
 
   return (
