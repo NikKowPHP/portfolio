@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 interface ProjectData {
   title: string;
   description: string;
+  shortDescription: string;
   thumbnail: string;
   images: string[];
   id: number;
@@ -17,7 +18,7 @@ interface Data {
   about: AboutMe;
 }
 export const useData = () => {
-  const [data, setData] = useState<ProjectData[]>([]);
+  const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,13 +28,17 @@ export const useData = () => {
       if (!response.ok) throw new Error("Failed to fetch");
 
       const jsonData: Data = await response.json();
-      setData(jsonData.projects);
-
-
+      setData(jsonData);
     } catch (error) {
       console.error(" Error fetching data: ", error);
     } finally {
-			setLoading(false)
-		}
+      setLoading(false);
+    }
+  };
+
+  return {
+    data,
+    setData,
+    fetchData,
   };
 };
