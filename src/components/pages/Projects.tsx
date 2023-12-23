@@ -4,6 +4,7 @@ import Card from "../parts/Card";
 import { useRedirectContext } from "../contexts/RedirectContext";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../hooks/useData";
+import Panels from "../parts/Panels";
 
 interface Project {
   title: string;
@@ -33,7 +34,6 @@ const Projects: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
 
   const animateCards = () => {
     cards.forEach((card, idx) => {
@@ -130,12 +130,15 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="text-white mt-20 h-auto">
-      {renderHeader()}
-      <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">
-        {renderProjects()}
+    <>
+    <Panels />
+      <div className="relative z-10 text-white mt-20 h-auto">
+        {renderHeader()}
+        <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">
+          {renderProjects()}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Projects;
