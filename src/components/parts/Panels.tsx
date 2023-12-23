@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/welcome.css";
+import "../../styles/background.css";
 
 type panelProps = {
   texts: string[];
@@ -42,7 +43,7 @@ const Panels = ({ texts }: panelProps) => {
         texts.map((text, idx) => (
           <div key={idx} className="panel">
             <div
-              className={`text__wrap ${idx % 2 == 0 ? "forward" : "backward"}`}
+              className={`text__wrap  ${idx % 2 == 0 ? "forward" : "backward"}`}
             >
               <h1>{text}</h1>
             </div>

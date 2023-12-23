@@ -27,7 +27,7 @@ const About: React.FC = () => {
 
   return (
     <>
-    <Panels />
+    <Panels texts={['Hire me', 'JS master', 'Awesome dude', 'The winner']} />
       <div className="relative z-10 container mx-auto max-w-3x1 mt-20 ">
         <div className="mt-20  text-white">
           {texts.slice(0, currentIndex + 1).map((text, index) => (
