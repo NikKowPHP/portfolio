@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/welcome.css";
-const Panels = () => {
+
+type panelProps = {
+  texts: string[];
+};
+
+const Panels = ({ texts }: panelProps) => {
   const [panelHeaders, setPanelHeaders] = useState<HTMLElement[]>([]);
 
   const initiatePanels = () => {
@@ -25,36 +30,24 @@ const Panels = () => {
       }, 1000);
     }
   };
-	useEffect(() => {
-		initiatePanels();
-
-	}, [])
-	useEffect(() => {
-		animatePanels()
-
-	}, [panelHeaders])
+  useEffect(() => {
+    initiatePanels();
+  }, []);
+  useEffect(() => {
+    animatePanels();
+  }, [panelHeaders]);
   return (
     <div className="panel__container">
-      <div className="panel">
-        <div className="text__wrap reverse">
-          <h1>PHP </h1>
-        </div>
-      </div>
-      <div className="panel">
-        <div className="text__wrap forward">
-          <h1>LARAVEL</h1>
-        </div>
-      </div>
-      <div className="panel">
-        <div className="text__wrap reverse">
-          <h1>JAVASCRIPT</h1>
-        </div>
-      </div>
-      <div className="panel">
-        <div className="text__wrap forward">
-          <h1>REACT</h1>
-        </div>
-      </div>
+      {texts &&
+        texts.map((text, idx) => (
+          <div key={idx} className="panel">
+            <div
+              className={`text__wrap ${idx % 2 == 0 ? "forward" : "backward"}`}
+            >
+              <h1>{text}</h1>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
