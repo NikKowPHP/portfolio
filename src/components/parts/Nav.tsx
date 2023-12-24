@@ -1,52 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useRedirectContext } from "../contexts/RedirectContext";
+import React from "react";
+import { useLinkAnimation } from "../hooks/useLinkAnimation";
 
 const Nav: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
-  const { setIsRedirecting } = useRedirectContext();
-
-  const animateNavLinks = () => {
-    navLinks.forEach((link, idx) => {
-      setTimeout(() => {
-        link.style.transform = "translateY(0)";
-      }, 3000 + idx * 400);
-    });
-  };
-  const animateNavLinksReverse = (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      let completedAnimations = 0;
-      navLinks.forEach((link, idx) => {
-        setTimeout(() => {
-          link.style.transform = "translateY(-100%)";
-          completedAnimations++;
-          if (completedAnimations === navLinks.length) {
-            resolve(true);
-          }
-        }, idx * 400);
-      });
-    });
-  };
-  const handleLinkClick = async (navLink: string) => {
-    setIsRedirecting(true)
-    await animateNavLinksReverse();
-    navigate(navLink);
-    setIsRedirecting(false);
-  };
-  useEffect(() => {
-    animateNavLinks();
-  }, [navLinks, location.pathname]);
-
-  useEffect(() => {
-    const navLinks = document.querySelectorAll<HTMLElement>(".nav-link");
-    const navLinksArray: HTMLElement[] = Array.from(navLinks);
-    setNavLinks(navLinksArray);
-  }, []);
+  const {handleLinkClick} = useLinkAnimation([".nav-link", ".footer-link"], 300, 300);
 
   return (
-    <nav className=" absolute top-0  w-full  bg-transparent  z-10">
+    <nav className=" absolute top-0  w-full  bg-transparent  z-10 overflow-hidden">
       <div className="max-w-4x1 mx-auto">
         <ul className="flex justify-around list-none text-white font-semibold">
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
