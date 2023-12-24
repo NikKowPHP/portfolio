@@ -5,6 +5,7 @@ import { useRedirectContext } from "../contexts/RedirectContext";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../hooks/useData";
 import Panels from "../parts/Panels";
+import { useLinkAnimation } from "../hooks/useLinkAnimation";
 
 interface Project {
   title: string;
@@ -15,6 +16,8 @@ interface Project {
 
 const Projects: React.FC = () => {
   const navigate = useNavigate();
+
+
   const { setIsRedirecting } = useRedirectContext();
   const [cards, setCards] = useState<HTMLElement[]>([]);
   const [previosTextComplete, setPreviosTextComplete] =
@@ -24,7 +27,10 @@ const Projects: React.FC = () => {
 
   const texts = ["/projects", "Selected projects i've created"];
 
+
   const { data, fetchData } = useData();
+
+    const {handleLinkClick} = useLinkAnimation([".card"], 600, 700,data );
 
   const handleTypingComplete = (index: number) => {
     setCompletedBlocks((prevBlocks) => [...prevBlocks, index + 1]);
@@ -35,41 +41,6 @@ const Projects: React.FC = () => {
     fetchData();
   }, []);
 
-  const animateCards = () => {
-    cards.forEach((card, idx) => {
-      setTimeout(() => {
-        card.style.transform = "translateY(0)";
-      }, 3000 + idx * 400);
-    });
-  };
-
-  const animateCardsReverse = (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      let completedAnimations = 0;
-      cards.forEach((card, idx) => {
-        setTimeout(() => {
-          card.style.transform = "translateY(250%)";
-          completedAnimations++;
-          if (completedAnimations === cards.length) {
-            resolve(true);
-          }
-        }, idx * 400);
-      });
-    });
-  };
-  useEffect(() => {
-    if (cards.length > 0) {
-      animateCards();
-    }
-  }, [cards]);
-
-  useEffect(() => {
-    if (data) {
-      const cards = document.querySelectorAll<HTMLElement>(".card");
-      const cardsArray: HTMLElement[] = Array.from(cards);
-      setCards(cardsArray);
-    }
-  }, [data]);
 
   useEffect(() => {
     if (previosTextComplete) {
@@ -80,12 +51,6 @@ const Projects: React.FC = () => {
     }
   }, [previosTextComplete, currentTextIndex]);
 
-  const onCardClick = async (link: string) => {
-    setIsRedirecting(true);
-    await animateCardsReverse();
-    navigate(`./${link}`);
-    setIsRedirecting(false);
-  };
 
   const renderHeader = () => {
     return (
@@ -122,7 +87,7 @@ const Projects: React.FC = () => {
             description={project.shortDescription}
             image={project.thumbnail}
             link={project.link}
-            onClick={onCardClick}
+            onClick={() => handleLinkClick(project.link)}
           />
         );
       })
