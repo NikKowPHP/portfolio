@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
   };
   return (
     <>
-      <Panels />
+      <Panels texts={['nik.kow@outlook.com', 'write to me', 'i\'m available', 'i love coding']} />
       <div className="content relative z-10">
         <div className="mt-36 text-white text-center form-header max-w-[1200px] m-auto">
           {completedBlocks.includes(0) && (

@@ -131,10 +131,10 @@ const Projects: React.FC = () => {
 
   return (
     <>
-    <Panels />
+    <Panels texts={['cool projects', 'github streak', 'dedication', 'constance']} />
       <div className="relative z-10 text-white mt-20 h-auto">
         {renderHeader()}
-        <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center">
+        <div className="mx-auto max-w-screen-xl mt-6 flex flex-wrap justify-center overflow-hidden">
           {renderProjects()}
         </div>
       </div>
