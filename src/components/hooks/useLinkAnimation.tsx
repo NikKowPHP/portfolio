@@ -38,7 +38,9 @@ export const useLinkAnimation = (
   ) => {
     setIsRedirecting(true);
     await animateLinksReverse();
-    !isExternalLink ? navigate(navLink) : (window.location.href = navLink);
+    setTimeout(() => {
+      !isExternalLink ? navigate(navLink) : (window.location.href = navLink);
+    }, 500);
     setIsRedirecting(false);
   };
   useEffect(() => {
