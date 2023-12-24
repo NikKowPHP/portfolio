@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 export const useLinkAnimation = (
   selectors: string[],
   animationDelay: number = 3000,
-  elementAnimationDelay: number = 400
+  elementAnimationDelay: number = 400,
+  data: any|undefined = undefined
 ) => {
   const navigate = useNavigate();
   const [links, setLinks] = useState<HTMLElement[]>([]);
@@ -23,7 +24,7 @@ export const useLinkAnimation = (
       let completedAnimations = 0;
       links.forEach((link, idx) => {
         setTimeout(() => {
-          link.style.transform = "translateY(-100%)";
+          link.style.transform = "translateY(-120%)";
           completedAnimations++;
           if (completedAnimations === links.length) {
             resolve(true);
@@ -48,6 +49,14 @@ export const useLinkAnimation = (
   }, [links, location.pathname]);
 
   useEffect(() => {
+    updateLinks();
+  }, []);
+
+  useEffect(() => {
+    updateLinks();
+  }, [data]);
+
+  const updateLinks = () => {
     const allLinks: HTMLElement[] = [];
     selectors.forEach((selector) => {
       const links = document.querySelectorAll<HTMLElement>(selector);
@@ -56,7 +65,7 @@ export const useLinkAnimation = (
     });
 
     setLinks(allLinks);
-  }, []);
+  };
 
   return { links, animateLinksReverse, handleLinkClick };
 };
