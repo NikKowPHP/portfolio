@@ -3,9 +3,9 @@ import { useRedirectContext } from "../contexts/RedirectContext";
 import { useNavigate } from "react-router-dom";
 
 export const useLinkAnimation = (
-  selector: string,
+  selectors: string[],
   animationDelay: number = 3000,
-  elementAnimationDelay: number = 400,
+  elementAnimationDelay: number = 400
 ) => {
   const navigate = useNavigate();
   const [links, setLinks] = useState<HTMLElement[]>([]);
@@ -32,10 +32,13 @@ export const useLinkAnimation = (
       });
     });
   };
-  const handleLinkClick = async (navLink: string) => {
+  const handleLinkClick = async (
+    navLink: string,
+    isExternalLink: boolean = false
+  ) => {
     setIsRedirecting(true);
     await animateLinksReverse();
-    navigate(navLink);
+    !isExternalLink ? navigate(navLink) : (window.location.href = navLink);
     setIsRedirecting(false);
   };
   useEffect(() => {
@@ -43,10 +46,15 @@ export const useLinkAnimation = (
   }, [links, location.pathname]);
 
   useEffect(() => {
-    const links = document.querySelectorAll<HTMLElement>(selector);
-    const linksArray: HTMLElement[] = Array.from(links);
-    setLinks(linksArray);
-  }, [selector]);
+    const allLinks: HTMLElement[] = [];
+    selectors.forEach((selector) => {
+      const links = document.querySelectorAll<HTMLElement>(selector);
+      const linksArray: HTMLElement[] = Array.from(links);
+      allLinks.push(...linksArray);
+    });
 
-	return {links, animateLinksReverse}
+    setLinks(allLinks);
+  }, []);
+
+  return { links, animateLinksReverse, handleLinkClick };
 };
