@@ -2,7 +2,7 @@ import React from "react";
 import { useLinkAnimation } from "../hooks/useLinkAnimation";
 
 const Nav: React.FC = () => {
-  const {handleLinkClick} = useLinkAnimation([".nav-link", ".footer-link"], 300, 300);
+  const {handleLinkClick} = useLinkAnimation([".nav-link", ".footer-link"], 400, 400);
 
   return (
     <nav className=" absolute top-0  w-full  bg-transparent  z-10 overflow-hidden">
