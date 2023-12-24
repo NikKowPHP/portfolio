@@ -6,24 +6,24 @@ import { svg } from "../../assets/images/svg/svg";
 const Footer: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
-  const { setIsRedirecting } = useRedirectContext();
+  const [footerLinks, setFooterLinks] = useState<HTMLElement[]>([]);
+  const { setIsRedirecting, isRedirecting } = useRedirectContext();
 
-  const animateNavLinks = () => {
-    navLinks.forEach((link, idx) => {
+  const animateFooter = () => {
+    footerLinks.forEach((link, idx) => {
       setTimeout(() => {
-        link.style.transform = "translateY(0)";
+        link.style.transform = "translateX(0)";
       }, 3000 + idx * 400);
     });
   };
   const animateNavLinksReverse = (): Promise<boolean> => {
     return new Promise((resolve) => {
       let completedAnimations = 0;
-      navLinks.forEach((link, idx) => {
+      footerLinks.forEach((link, idx) => {
         setTimeout(() => {
           link.style.transform = "translateY(-100%)";
           completedAnimations++;
-          if (completedAnimations === navLinks.length) {
+          if (completedAnimations === footerLinks.length) {
             resolve(true);
           }
         }, idx * 400);
@@ -37,75 +37,30 @@ const Footer: React.FC = () => {
     setIsRedirecting(false);
   };
   useEffect(() => {
-    animateNavLinks();
-  }, [navLinks, location.pathname]);
+    animateFooter();
+  }, [footerLinks, location.pathname]);
 
   useEffect(() => {
-    const navLinks = document.querySelectorAll<HTMLElement>(".nav-link");
-    const navLinksArray: HTMLElement[] = Array.from(navLinks);
-    setNavLinks(navLinksArray);
+    const footerLinks = document.querySelectorAll<HTMLElement>(".footer-link");
+    const footerLinksArray: HTMLElement[] = Array.from(footerLinks);
+    setFooterLinks(footerLinksArray);
   }, []);
 
   return (
-    <footer className="bg-transparent text-white">
-      <div className="container">
-        <ul className="flex flex-around">
-          <li>
-            <a className="text-white" href="in/mikita-kavaliou-390b62236">{svg.linkedIn}</a>
+    <footer className="absolute bottom-0  w-full bg-transparent text-white z-10">
+      <div className=" container mx-auto max-w-3xl ">
+        <ul className="flex justify-around overflow-hidden">
+          <li className="footer-link transition-transform transform translate-y-full duration-1000">
+            <a className="p-4 block" href="in/mikita-kavaliou-390b62236">
+              {svg.linkedIn}
+            </a>
           </li>
-          <li>
-            <a href="https://github.com/NikKowPHP">{svg.github}</a>
+          <li className="footer-link transition-transform transform translate-y-full duration-1000 ">
+            <a className="block  p-4" href="https://github.com/NikKowPHP">{svg.github}</a>
           </li>
         </ul>
       </div>
     </footer>
-  );
-
-  return (
-    <nav className=" absolute top-0  w-full  bg-transparent  z-10">
-      <div className="max-w-4x1 mx-auto">
-        <ul className="flex justify-around list-none text-white font-semibold">
-          <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
-            <span
-              className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick("welcome")}
-            >
-              Home
-            </span>
-          </li>
-          <li className="nav-link transition-transform transform -translate-y-full duration-1000">
-            <span
-              className="block p-4  font-semibold cursor-pointer hover:scale-110  text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick("about")}
-            >
-              About
-            </span>
-          </li>
-          <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
-            <span
-              className="block p-4  font-semibold cursor-pointer hover:scale-110
-              text-opacity-75 text-whiteBlue
-              "
-              onClick={() => handleLinkClick("projects")}
-            >
-              Projects
-            </span>
-          </li>
-          <li
-            className="nav-link transition-transform transform -translate-y-full duration-1000 
-          text-opacity-75 text-whiteBlue
-          "
-          >
-            <span
-              className="block p-4  font-semibold cursor-pointer hover:scale-110  "
-              onClick={() => handleLinkClick("contact")}
-            >
-              Contact
-            </span>
-          </li>
-        </ul>
-      </div>
-    </nav>
   );
 };
 
