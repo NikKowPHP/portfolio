@@ -7,19 +7,8 @@ import { useData } from "../hooks/useData";
 import Panels from "../parts/Panels";
 import { useLinkAnimation } from "../hooks/useLinkAnimation";
 
-interface Project {
-  title: string;
-  image: string;
-  description: string;
-  link: string;
-}
 
 const Projects: React.FC = () => {
-  const navigate = useNavigate();
-
-
-  const { setIsRedirecting } = useRedirectContext();
-  const [cards, setCards] = useState<HTMLElement[]>([]);
   const [previosTextComplete, setPreviosTextComplete] =
     useState<boolean>(false);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
@@ -83,10 +72,13 @@ const Projects: React.FC = () => {
         return (
           <Card
             key={index}
+            video={project.video}
             title={project.title}
             description={project.shortDescription}
+            shortDescription={project.shortDescription}
             image={project.thumbnail}
             link={project.link}
+            stack={project.stack}
             onClick={() => handleLinkClick(project.link)}
           />
         );
