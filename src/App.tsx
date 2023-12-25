@@ -10,7 +10,7 @@ const App: React.FC = () => {
     <RedirectContextProvider>
       <Nav />
       <Outlet />
-      <Footer />
+      <Footer classes="absolute" />
     </RedirectContextProvider>
   );
 };

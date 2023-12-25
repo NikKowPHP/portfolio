@@ -25,7 +25,6 @@ const Welcome: React.FC = () => {
     <>
       <Header />
       <canvas id="headerCanvas"></canvas>
-      <Footer classes="absolute" />
     </>
   );
 };

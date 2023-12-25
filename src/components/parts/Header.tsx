@@ -1,4 +1,5 @@
 import React from "react";
+import Panels from "./Panels";
 
   const Header = (): JSX.Element => (
     <>
@@ -20,28 +21,7 @@ import React from "react";
             </span>
           </div>
         </div>
-        <div className="panel__container">
-          <div className="panel">
-            <div className="text__wrap reverse">
-              <h1>PHP </h1>
-            </div>
-          </div>
-          <div className="panel">
-            <div className="text__wrap forward">
-              <h1>LARAVEL</h1>
-            </div>
-          </div>
-          <div className="panel">
-            <div className="text__wrap reverse">
-              <h1>JAVASCRIPT</h1>
-            </div>
-          </div>
-          <div className="panel">
-            <div className="text__wrap forward">
-              <h1>REACT</h1>
-            </div>
-          </div>
-        </div>
+        <Panels texts={["Mikita", "Kavaliou", "JavaScript", "React.js"]}/>
       </section>
     </>
   );

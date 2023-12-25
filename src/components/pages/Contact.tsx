@@ -11,6 +11,8 @@ const Contact: React.FC = () => {
   const [completedBlocks, setCompletedBlocks] = useState<number[]>([0]);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
+  const panelTexts:string[] = ['nik.kow@outlook.com', 'write to me', 'i\'m available', 'i love coding'];
+
   useEffect(() => {
     if (previosTextComplete) {
       setTimeout(() => {
@@ -58,7 +60,7 @@ const Contact: React.FC = () => {
   const renderForm = () => {
     return (
       <form
-        className="flex flex-col translate-y-[250%] transition-all ease-out duration-1000 "
+        className="flex flex-col translate-y-[250%] transition-all ease-out duration-1000"
         ref={form}
         onSubmit={sendEmail}
       >
@@ -87,11 +89,12 @@ const Contact: React.FC = () => {
       </form>
     );
   };
+
   return (
     <>
-      <Panels texts={['nik.kow@outlook.com', 'write to me', 'i\'m available', 'i love coding']} />
-      <div className="content relative z-10">
-        <div className="mt-36 text-white text-center form-header max-w-[1200px] m-auto">
+      <Panels texts={panelTexts} />
+      <div className="content  mt-14 px-5 sm:mt-10 md:mt-24 lg:mt-12 xl:mt-36  relative z-10">
+        <div className=" text-white text-center form-header max-w-[1200px] m-auto">
           {completedBlocks.includes(0) && (
             <h1 className=" lg:text-9xl mb-3">
               <TextTypingEffect
@@ -120,7 +123,7 @@ const Contact: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="mt-10  overflow-hidden text-white m-auto max-w-[570px]">
+        <div className="mt-5 md:mt-10 lg:mt-10 xl:mt-10  overflow-hidden text-white m-auto max-w-[570px]">
           {renderForm()}
         </div>
       </div>

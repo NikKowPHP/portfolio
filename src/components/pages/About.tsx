@@ -28,7 +28,7 @@ const About: React.FC = () => {
   return (
     <>
     <Panels texts={['Hire me', 'JS master', 'Awesome dude', 'The winner']} />
-      <div className="relative pb-5 min-h-[75vh] z-10 container mx-auto max-w-3x1 mt-20 ">
+      <div className="relative pb-10  z-10 container mx-auto max-w-3x1 mt-20 ">
         <div className="mt-20  text-white">
           {texts.slice(0, currentIndex + 1).map((text, index) => (
             <div key={index}>
