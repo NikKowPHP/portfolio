@@ -3,8 +3,16 @@
     {
       "id": 1,
       "title": "TimeFlow",
+      "stack": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "React.js",
+        "CSS",
+        "Vite"
+      ],
       "description": "TimeFlow is a robust time management tool designed to enhance personal or small team organization and efficiency. Its advanced calendar and task handling features empower users to seize control of their schedules, effortlessly rearranging tasks for individual or team use. Say farewell to chaotic time management and welcome a more productive, stress-free lifestyle. Built using PHP, Laravel, MySQL, JavaScript, React.js, CSS, HTML, Axios, and Vite, it's an evolving platform aimed at streamlining time management with upcoming features like task customization, notifications, drag-and-drop task rearrangement, team collaboration, data analytics, and calendar integration.",
-      "shortDescription": "TimeFlow - Empower your time management. This tool, built with PHP, Laravel, MySQL, JavaScript, React.js, CSS, and HTML, offers advanced calendar and task handling features. Organize tasks effortlessly for personal or team use",
+      "shortDescription": "TimeFlow - Empower your time management. This tool offers advanced calendar and task handling features", 
       "features": [
         "Task Management: Create, organize, and prioritize tasks with ease. Customize task details, set due dates, and categorize them [coming soon] for a structured workflow.",
         "Notifications and Reminders: Stay on top of your commitments with customizable notifications and reminders. Never miss an important event or deadline again. ",
@@ -23,12 +31,13 @@
         "timeflow/TimeFlow-taskInfo.png",
         "timeflow/TimeFlow-profileInfo.png"
       ],
+      "video": "",
       "link": "timeflow"
     },
     {
       "id": 2,
       "title": "Twitter Clone",
-      "shortDescription": "A Twitter-inspired pet project created for skill practice. Built with PHP, Laravel, MySQL, HTML, and CSS Blade, it mimics Twitter's interface and functions, featuring user authentication, post creation, reposting, likes, image attachments, and follow/unfollow capabilities",
+      "shortDescription": "A Twitter-inspired pet project created for skill practice.",
       "description": "The pet project is a Twitter clone meticulously crafted to mirror the original platform's style and functionality. It's built using PHP with the Laravel framework, employing MySQL for database management and HTML/CSS Blade for front-end development. The primary features include user authentication, the ability to follow/unfollow users, create and repost tweets, like posts, and attach images to tweets. This project serves as a practical endeavor to enhance and apply skills in web development, replicating key functionalities of a popular social media platform within a controlled environment.",
       "thumbnail": "twitter/twitter-logo.png",
       "images": [
@@ -39,6 +48,15 @@
         "twitter/twitter-home.png",
         "twitter/twitter-postWritting.png",
         "twitter/twitter-twitter-follow.png"
+      ],
+      "stack": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Blade",
+        "JavaScript",
+        "CSS",
+        "HTML"
       ],
       "link": "twitter"
     }

@@ -8,6 +8,8 @@ interface ProjectData {
   id: number;
   link: string;
   features: string[];
+  stack: string[];
+  video: string;
 }
 interface AboutMe {
   title: string;
@@ -20,11 +22,10 @@ interface Data {
 export const useData = () => {
   const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("./src/data/data.json");
+      const response = await fetch("/src/data/data.json");
       if (!response.ok) throw new Error("Failed to fetch");
 
       const jsonData: Data = await response.json();
