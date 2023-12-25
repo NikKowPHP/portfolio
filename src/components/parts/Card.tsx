@@ -5,6 +5,9 @@ interface CardProps {
   title: string;
   description: string;
   link: string;
+  stack: string[];
+  video: string;
+  shortDescription: string;
   onClick: (link: string) => void;
 }
 
@@ -12,31 +15,38 @@ const Card: React.FC<CardProps> = ({
   image,
   title,
   description,
+  shortDescription,
+  video,
+  stack,
   link,
   onClick,
 }) => {
-  const alt = image.slice(0, -4);
   return (
     <div
+      onClick={() => onClick(link)}
       style={{ transform: "translateY(250%)" }}
-      className="card transition-transform transform duration-500 m-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-500 ease-in-out hover:duration-500 cursor-pointer "
+      className="card relative transition-transform transform duration-500 m-4 max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700  ease-in-out hover:duration-500 cursor-pointer"
     >
-      <div className="flex justify-center mt-5 " onClick={() => onClick(link)}>
-        <img
-          className="rounded-t-lg rounded-b-lg w-1/2  h-1/2"
-          src={`./src/assets/images/${image}`}
-          alt={alt}
-        />
+      <div className="absolute bottom-0 left-0 w-full h-full z-10 bg-gradient-to-t from-black via-black-300/30 to-transparent"></div>
+      <div className="flex justify-center ">
+        <video className="w-full" src={video} autoPlay loop muted></video>
       </div>
-      <div className="p-5 text-center">
-        <div onClick={() => onClick(link)}>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
-            {title}
-          </h5>
+      <div className="project-info absolute top-1/2 left-0  w-full px-5 z-20 ">
+        <h3 className="card-title font-extrabold text-3xl text-white mb-2">
+          {title}
+        </h3>
+        <p className="">{shortDescription}</p>
+        <div className="tags flex">
+          {" "}
+          {stack.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-2 mr-2 mt-1 bg-gray-300/20 rounded-xl text-sm"
+            >
+              {item}
+            </div>
+          ))}{" "}
         </div>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {description}
-        </p>
       </div>
     </div>
   );
