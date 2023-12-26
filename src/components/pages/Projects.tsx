@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useData } from "../hooks/useData";
 import Panels from "../parts/Panels";
 import { useLinkAnimation } from "../hooks/useLinkAnimation";
+import Footer from "../parts/Footer";
 
 
 const Projects: React.FC = () => {
@@ -95,6 +96,7 @@ const Projects: React.FC = () => {
           {renderProjects()}
         </div>
       </div>
+      <Footer classes="fixed" />
     </>
   );
 };

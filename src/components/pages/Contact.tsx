@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 import TextTypingEffect from "../TextTypingEffect";
 import Panels from "../parts/Panels";
+import Footer from "../parts/Footer";
 
 const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -127,6 +128,7 @@ const Contact: React.FC = () => {
           {renderForm()}
         </div>
       </div>
+      <Footer classes="fixed" />
     </>
   );
 };

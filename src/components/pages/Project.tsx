@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TextTypingEffect from "../TextTypingEffect";
 import Carousel from "../parts/Carousel";
+import Footer from "../parts/Footer";
 
 interface ProjectData {
   title: string;
@@ -128,6 +129,11 @@ const Project: React.FC = () => {
     );
   };
 
-  return renderProjectInfo();
+  return (
+    <>
+    {renderProjectInfo()}
+    <Footer classes="fixed" />
+    </>
+  )
 };
 export default Project;

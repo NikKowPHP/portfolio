@@ -3,12 +3,12 @@ import "./../../styles/welcome.css";
 import Header from "../parts/Header";
 import { initializeCanvas } from "../canvas/CanvasAnimation";
 import { useRedirectContext } from "../contexts/RedirectContext";
-import { useLinkAnimation } from "../hooks/useLinkAnimation";
+import { useLinkAnimation, AnimationType } from "../hooks/useLinkAnimation";
 import Footer from "../parts/Footer";
 
 const Welcome: React.FC = () => {
   const { isRedirecting } = useRedirectContext();
-  const {animateLinksReverse} = useLinkAnimation([".hero__header"], 1000, 300);
+  const {animateLinksReverse} = useLinkAnimation([".hero__header", ".footer-link"], AnimationType.SlideIn, 1000, 300);
 
   useEffect(() => {
     if (isRedirecting) animateLinksReverse();
@@ -25,6 +25,7 @@ const Welcome: React.FC = () => {
     <>
       <Header />
       <canvas id="headerCanvas"></canvas>
+      <Footer classes="absolute" />
     </>
   );
 };

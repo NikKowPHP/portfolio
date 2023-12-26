@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextTypingEffect from "../TextTypingEffect";
 import { aboutMe } from "../../assets/infoContent/aboutMe";
 import Panels from "../parts/Panels";
+import Footer from "../parts/Footer";
 
 const About: React.FC = () => {
   const texts = aboutMe;
@@ -43,6 +44,8 @@ const About: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <Footer classes="fixed" />
     </>
   );
 };
