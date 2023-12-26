@@ -138,8 +138,8 @@ export function initializeCanvas(
   const mouseCoords: MouseCoords = {
     x: 0,
     y: 0,
-    targetX: 200,
-    targetY: 150,
+    targetX: canvas.width < 400 ? 0: 200,
+    targetY: canvas.width < 400 ? 50: 150,
   };
   
   // Event listener for mouse movement to update target coordinates

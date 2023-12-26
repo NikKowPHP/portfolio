@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import TextTypingEffect from "../TextTypingEffect";
 import Carousel from "../parts/Carousel";
 import Footer from "../parts/Footer";
+import { useData } from "../hooks/useData";
 
 interface ProjectData {
   title: string;
@@ -25,41 +26,31 @@ interface Data {
 const Project: React.FC = () => {
   const corouselRef = useRef<HTMLDivElement | null>(null);
   const projectDescriptionRef = useRef<HTMLDivElement | null>(null);
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
-    null
+  const [selectedProject, setSelectedProject] = useState<ProjectData | undefined>(
+   undefined 
   );
   const [isTypingComplete, setIsTypingComplete] = useState<boolean>(false);
-
-
-  const [data, setData] = useState<ProjectData[]>([]);
-
   const location = useLocation();
   const segments = location.pathname.split("/");
   const projectName = segments[segments.length - 1];
+
+  const { data, fetchData } = useData();
 
   const findProject = (data: Data): ProjectData | undefined => {
     return data.projects.find(
       (project: ProjectData) => project.link === projectName
     );
   };
-  const fetchData = async () => {
-    try {
-      const response = await fetch("/src/data/data.json");
-      if (!response.ok) throw new Error("Failed to fetch");
-
-      const jsonData: Data = await response.json();
-      setData(jsonData.projects);
-
-      const foundProject: ProjectData | undefined = findProject(jsonData);
-      setSelectedProject(foundProject || null);
-    } catch (error) {
-      console.error(" Error fetching data: ", error);
-    }
-  };
 
   useEffect(() => {
     fetchData();
   }, [projectName]);
+  useEffect(() => {
+    if(data){
+      const foundProject = findProject(data)
+      setSelectedProject(foundProject && foundProject);
+    }
+  },[data])
 
   useEffect(() => {
     if (isTypingComplete) {
@@ -82,7 +73,7 @@ const Project: React.FC = () => {
             {selectedProject?.images.map((image, index) => (
               <img
                 key={index}
-                src={`/src/assets/images/${image}`}
+                src={`/portfolio/images/${image}`}
                 alt={image}
                 className="w-full h-auto"
               />
