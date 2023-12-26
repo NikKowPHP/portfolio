@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export enum AnimationType {
   SlideIn = "slide-in",
   SlideOut = "slide-out",
+  SlideOutReverse = "slide-out--reverse",
   FadeIn = "fade-in",
   FadeOut = "fade-out",
 }
@@ -14,30 +15,59 @@ export const useLinkAnimation = (
   animationType: AnimationType = AnimationType.SlideIn,
   animationDelay: number = 3000,
   elementAnimationDelay: number = 400,
-  data: any | undefined = undefined
+  data: any | undefined = undefined,
+
 ) => {
   const navigate = useNavigate();
   const [links, setLinks] = useState<HTMLElement[]>([]);
   const { setIsRedirecting, isRedirecting } = useRedirectContext();
+
+
+  const slideInAnimation = (link: HTMLElement) => {
+      link.style.transform = "translateY(0)";
+  };
+
+  const slideOutAnimation = (link: HTMLElement ) => {
+      link.style.transform = "translateY(-150%)";
+  };
+  
+
+  const fadeInAnimation = (link: HTMLElement) => {
+      link.style.opacity = "1";
+  };
+
+  const fadeOutAnimation = (link: HTMLElement) => {
+      link.style.opacity = "0";
+  };
+
+  const reverseAnimationMap: Record<
+    AnimationType,
+    (link: HTMLElement) => void
+  > = {
+    [AnimationType.SlideIn]: slideOutAnimation,
+    [AnimationType.SlideOut]: slideInAnimation,
+    [AnimationType.SlideOutReverse]: slideInAnimation,
+    [AnimationType.FadeIn]: fadeOutAnimation,
+    [AnimationType.FadeOut]: fadeInAnimation,
+  };
 
   const animateLinks = () => {
     links.forEach((link, idx) => {
       setTimeout(() => {
         switch (animationType) {
           case AnimationType.SlideIn:
-            link.style.transform = "translateY(0)";
+            slideInAnimation(link);
             break;
           case AnimationType.SlideOut:
-            link.style.transform = "translateY(-150%)";
+            slideOutAnimation(link);
             break;
           case AnimationType.FadeIn:
-            link.style.opacity= "1";
+            fadeInAnimation(link);
             break;
           case AnimationType.FadeOut:
-            link.style.opacity= "0";
+            fadeOutAnimation(link);
             break;
         }
-        link.style.transform = "translateY(0)";
       }, animationDelay + idx * elementAnimationDelay);
     });
   };
@@ -46,7 +76,8 @@ export const useLinkAnimation = (
       let completedAnimations = 0;
       links.forEach((link, idx) => {
         setTimeout(() => {
-          link.style.transform = "translateY(-120%)";
+          const reverseAnimation = reverseAnimationMap[animationType];
+          reverseAnimation(link)
           completedAnimations++;
           if (completedAnimations === links.length) {
             resolve(true);
@@ -89,5 +120,5 @@ export const useLinkAnimation = (
     setLinks(allLinks);
   };
 
-  return { links, animateLinksReverse, handleLinkClick };
+  return { links, animateLinksReverse, handleLinkClick  };
 };
