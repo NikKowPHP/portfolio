@@ -1,4 +1,4 @@
-const MAX_CIRCLES = 200;
+const MAX_CIRCLES = 300;
 const MOVEMENT_THRESHOLD = 0.075;
 const CIRCLE_RADIOUS = 2;
 
@@ -28,10 +28,10 @@ function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
     const randomCircle = generateRandomCircle(canvas);
     // Ensure generated circle coordinates are within canvas bounds
     if (
-      randomCircle.x > canvas.width * 0.2 &&
-      randomCircle.x < canvas.width * 0.8 &&
-      randomCircle.y > canvas.height * 0.2 &&
-      randomCircle.y < canvas.height * 0.8
+      randomCircle.x > canvas.width * 0.1 &&
+      randomCircle.x < canvas.width * 0.9 &&
+      randomCircle.y > canvas.height * 0.1 &&
+      randomCircle.y < canvas.height * 0.9
     ) {
       circleArray.push(randomCircle);
     }
@@ -144,14 +144,14 @@ export function initializeCanvas(
   
   // Event listener for mouse movement to update target coordinates
   window.addEventListener("mousemove", (e) => {
-    mouseCoords.targetX = e.clientX - canvas.width / 2;
-    mouseCoords.targetY = e.clientY - canvas.width / 2;
+    mouseCoords.targetX = e.clientX - canvas.width / 3;
+    mouseCoords.targetY = e.clientY - canvas.width / 3;
   });
 
   // Event listener for canvas resize to handle resizing and circle adjustments
   window.addEventListener("resize", () => handleResize(canvas, circleArray));
 
-   // Start canvas animation, header animation, and set canvas dimensions
+   // Start canvas animation and set canvas dimensions
   animateCanvas(ctx, canvas, circleArray, mouseCoords);
   setDimensions(canvas);
 }
