@@ -1,5 +1,5 @@
-const MAX_CIRCLES = 300;
-const MOVEMENT_THRESHOLD = 0.075;
+const MAX_CIRCLES = 200;
+const MOVEMENT_THRESHOLD = 0.175;
 const CIRCLE_RADIOUS = 2;
 
 interface Coordinates {
@@ -16,8 +16,8 @@ interface MouseCoords {
 // Function to create random coordinates within canvas bounds
 function generateRandomCircle(canvas: HTMLCanvasElement): Coordinates {
   return {
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
+    x: Math.random() * canvas.width* 2.3,
+    y: Math.random() * canvas.height * 3,
   };
 }
 
@@ -28,10 +28,10 @@ function generateCircleArray(canvas: HTMLCanvasElement): Coordinates[] {
     const randomCircle = generateRandomCircle(canvas);
     // Ensure generated circle coordinates are within canvas bounds
     if (
-      randomCircle.x > canvas.width * 0.1 &&
-      randomCircle.x < canvas.width * 0.9 &&
-      randomCircle.y > canvas.height * 0.1 &&
-      randomCircle.y < canvas.height * 0.9
+      randomCircle.x > canvas.width * 0.01 &&
+      randomCircle.x < canvas.width * 3 &&
+      randomCircle.y > canvas.height * 0.01 &&
+      randomCircle.y < canvas.height *4 
     ) {
       circleArray.push(randomCircle);
     }
@@ -138,8 +138,8 @@ export function initializeCanvas(
   const mouseCoords: MouseCoords = {
     x: 0,
     y: 0,
-    targetX: 0,
-    targetY: 0,
+    targetX: 200,
+    targetY: 150,
   };
   
   // Event listener for mouse movement to update target coordinates
