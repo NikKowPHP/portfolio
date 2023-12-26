@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TextTypingEffect from "../TextTypingEffect";
 import Card from "../parts/Card";
-import { useRedirectContext } from "../contexts/RedirectContext";
-import { useNavigate } from "react-router-dom";
 import { useData } from "../hooks/useData";
 import Panels from "../parts/Panels";
-import { useLinkAnimation } from "../hooks/useLinkAnimation";
+import { AnimationType, useLinkAnimation } from "../hooks/useLinkAnimation";
 import Footer from "../parts/Footer";
 
 
@@ -20,7 +18,7 @@ const Projects: React.FC = () => {
 
   const { data, fetchData } = useData();
 
-    const {handleLinkClick} = useLinkAnimation([".card"], 600, 700,data );
+    const {handleLinkClick} = useLinkAnimation([".card"], AnimationType.SlideIn, 600, 700,data );
 
   const handleTypingComplete = (index: number) => {
     setCompletedBlocks((prevBlocks) => [...prevBlocks, index + 1]);
