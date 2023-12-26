@@ -41,13 +41,14 @@
       "description": "The pet project is a Twitter clone meticulously crafted to mirror the original platform's style and functionality. It's built using PHP with the Laravel framework, employing MySQL for database management and HTML/CSS Blade for front-end development. The primary features include user authentication, the ability to follow/unfollow users, create and repost tweets, like posts, and attach images to tweets. This project serves as a practical endeavor to enhance and apply skills in web development, replicating key functionalities of a popular social media platform within a controlled environment.",
       "thumbnail": "twitter/twitter-logo.png",
       "images": [
-        "twitter/twitter-welcome.png",
-        "twitter/twitter-register.png",
-        "twitter/twitter-loginForm.png",
-        "twitter/twitter-join.png",
-        "twitter/twitter-home.png",
-        "twitter/twitter-postWritting.png",
-        "twitter/twitter-twitter-follow.png"
+        "twitter/twitter-0.png",
+        "twitter/twitter-1.png",
+        "twitter/twitter-2.png",
+        "twitter/twitter-3.png",
+        "twitter/twitter-4.png",
+        "twitter/twitter-5.png",
+        "twitter/twitter-6.png",
+        "twitter/twitter-7.png"
       ],
       "video": "/src/assets/videos/twitter-demo.mp4",
       "stack": [
