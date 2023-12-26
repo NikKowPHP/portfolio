@@ -31,7 +31,7 @@
         "timeflow/TimeFlow-taskInfo.png",
         "timeflow/TimeFlow-profileInfo.png"
       ],
-      "video": "/src/assets/videos/timeflow-demo.mp4",
+      "video": "./videos/timeflow-demo.mp4",
       "link": "timeflow"
     },
     {
@@ -50,7 +50,7 @@
         "twitter/twitter-6.png",
         "twitter/twitter-7.png"
       ],
-      "video": "/src/assets/videos/twitter-demo.mp4",
+      "video": "./videos/twitter-demo.mp4",
       "stack": [
         "PHP",
         "Laravel",

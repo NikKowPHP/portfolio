@@ -13,7 +13,7 @@ canvas {
   left: 0;
   z-index: 2;
 }
-.hero-text {
+/* .hero-text {
   position: absolute;
   z-index: 10;
   bottom: 10px;
@@ -21,7 +21,7 @@ canvas {
   width: 100%;
   grid-template-columns: repeat(12, 1fr);
   color: rgba(240, 248, 255, 0.76);
-}
+} */
 .hero-text div:nth-child(1) {
   grid-area: 1 /1 /1 / 13;
 }

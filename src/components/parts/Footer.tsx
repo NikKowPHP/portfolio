@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { svg } from "../../assets/images/svg/svg";
+import { svg } from "../../../public/images/svg/svg";
 import { useLinkAnimation, AnimationType } from "../hooks/useLinkAnimation";
 import { useRedirectContext } from "../contexts/RedirectContext";
 
