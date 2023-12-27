@@ -10,7 +10,7 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ classes }) => {
   const { isRedirecting } = useRedirectContext();
   const { handleLinkClick, animateLinksReverse } =
-    useLinkAnimation([".footer-link"], AnimationType.SlideIn, 400, 400);
+    useLinkAnimation([".footer-link"], AnimationType.SlideIn,AnimationType.SlideOutReverse, 400, 400);
   useEffect(() => {
     if (isRedirecting) animateLinksReverse();
   }, [isRedirecting]);

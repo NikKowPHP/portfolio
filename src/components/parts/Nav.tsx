@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLinkAnimation,AnimationType } from "../hooks/useLinkAnimation";
 import { BASE_URL } from "../../constants/constants";
+import { useRedirectContext } from "../contexts/RedirectContext";
 
 const Nav: React.FC = () => {
-  const {handleLinkClick} = useLinkAnimation([".nav-link" ],AnimationType.SlideIn, 250, 250);
+  const {isRedirecting} = useRedirectContext();
+  const {handleLinkClick, animateLinksReverse} = useLinkAnimation([".nav-link" ],AnimationType.SlideIn,AnimationType.SlideOut, 250, 250);
+  useEffect(() => {
+    if (isRedirecting) animateLinksReverse();
+  }, [isRedirecting]);
 
   return (
     <nav className=" absolute top-0  w-full  bg-transparent  z-10 overflow-hidden">

@@ -8,7 +8,7 @@ import Footer from "../parts/Footer";
 
 const Welcome: React.FC = () => {
   const { isRedirecting } = useRedirectContext();
-  const {animateLinksReverse} = useLinkAnimation([".hero__header", ".footer-link"], AnimationType.SlideIn, 1000, 300);
+  const {animateLinksReverse} = useLinkAnimation([".hero__header"], AnimationType.SlideIn,AnimationType.SlideOutReverse, 1000, 300);
 
   useEffect(() => {
     if (isRedirecting) animateLinksReverse();
