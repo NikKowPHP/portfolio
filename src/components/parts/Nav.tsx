@@ -9,42 +9,42 @@ const Nav: React.FC = () => {
       <div className="max-w-4x1 mx-auto">
         <ul className="flex justify-around list-none text-white font-semibold">
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
-            <span
+            <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick("welcome")}
+              onClick={(event) => handleLinkClick("welcome")}
             >
               Home
-            </span>
+            </button>
           </li>
           <li className="nav-link transition-transform transform -translate-y-full duration-1000">
-            <span
+            <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110  text-opacity-75 text-whiteBlue"
               onClick={() => handleLinkClick("about")}
             >
               About
-            </span>
+            </button>
           </li>
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
-            <span
+            <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110
               text-opacity-75 text-whiteBlue
               "
               onClick={() => handleLinkClick("projects")}
             >
               Projects
-            </span>
+            </button>
           </li>
           <li
             className="nav-link transition-transform transform -translate-y-full duration-1000 
           text-opacity-75 text-whiteBlue
           "
           >
-            <span
+            <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110  "
               onClick={() => handleLinkClick("contact")}
             >
               Contact
-            </span>
+            </button>
           </li>
         </ul>
       </div>
