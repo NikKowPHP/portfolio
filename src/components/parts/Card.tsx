@@ -29,19 +29,19 @@ const Card: React.FC<CardProps> = ({
     >
       <div className="absolute bottom-0 left-0 w-full h-full z-10 bg-gradient-to-t from-black via-black-300/30 to-transparent"></div>
       <div className="flex justify-center ">
-        <video className="w-full" src={video} autoPlay loop muted></video>
+        <video className="w-full h-full" src={video} autoPlay loop muted></video>
       </div>
-      <div className="project-info absolute top-1/2 left-0  w-full px-5 z-20 ">
-        <h3 className="card-title font-extrabold text-3xl text-white mb-2">
+      <div className="project-info absolute top-1/3 md:top-1/2 left-0  w-full px-5 z-20 ">
+        <h3 className="card-title font-extrabold text-xl md:text-3xl lg:text-3xl text-white mb-2">
           {title}
         </h3>
-        <p className="">{shortDescription}</p>
+        <p className="text-sm leading-5 md:text-base">{shortDescription}</p>
         <div className="tags flex">
           {" "}
           {stack.map((item, idx) => (
             <div
               key={idx}
-              className="p-2 mr-2 mt-1 bg-gray-300/20 rounded-xl text-sm"
+              className="p-2 mr-1 mt-1 bg-gray-300/20 rounded-xl text-xs  md:text-sm md:mr-2"
             >
               {item}
             </div>
