@@ -12,7 +12,7 @@ const Nav: React.FC = () => {
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
             <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
-              onClick={() => handleLinkClick(BASE_URL)}
+              onClick={() => handleLinkClick("")}
             >
               Home
             </button>

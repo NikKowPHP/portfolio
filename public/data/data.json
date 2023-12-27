@@ -56,9 +56,8 @@
         "Laravel",
         "MySQL",
         "Blade",
-        "JavaScript",
-        "CSS",
-        "HTML"
+        "JS",
+        "CSS"
       ],
       "link": "twitter"
     }
