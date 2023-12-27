@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
   const renderForm = () => {
     return (
       <form
-        className="flex flex-col translate-y-[250%] transition-all ease-out duration-1000"
+        className="flex flex-col translate-y-[250%] transition-all ease-out duration-1000 mb-7"
         ref={form}
         onSubmit={sendEmail}
       >

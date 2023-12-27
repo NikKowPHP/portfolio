@@ -5,7 +5,7 @@ const Header = (): JSX.Element => (
   <>
     <section>
       <div
-        className="hero-text absolute z-10 bottom-12 md:bottom-10 lg:xl:bottom-10 grid grid-cols-12 w-full"
+        className="hero-text fixed z-10 bottom-10 md:bottom-10 lg:xl:bottom-10 grid grid-cols-12 w-full"
         style={{ color: "rgba(240, 248, 255, 0.76)" }}
       >
         <div>
