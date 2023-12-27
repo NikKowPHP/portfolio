@@ -10,15 +10,11 @@ import Project from "./pages/Project";
 
 const router = createBrowserRouter([
   {
-    path: "/portfolio",
+    path: "/",
     element: <App />,
     children: [
       {
-        path: "/portfolio",
-        element: <Navigate to="/portfolio/welcome" />,
-      },
-      {
-        path: "/portfolio",
+        path: "/portfolio/",
         element: <Welcome />,
       },
       {
