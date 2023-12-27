@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRedirectContext } from "../contexts/RedirectContext";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constants/constants";
 
 export enum AnimationType {
   SlideIn = "slide-in",
@@ -93,7 +94,7 @@ export const useLinkAnimation = (
     setIsRedirecting(true);
     await animateLinksReverse();
     setTimeout(() => {
-      !isExternalLink ? navigate(navLink) : (window.location.href = navLink);
+      !isExternalLink ? navigate(BASE_URL + navLink) : (window.location.href = navLink);
     }, 500);
     setIsRedirecting(false);
   };

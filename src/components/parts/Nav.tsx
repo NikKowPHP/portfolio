@@ -1,5 +1,6 @@
 import React from "react";
 import { useLinkAnimation,AnimationType } from "../hooks/useLinkAnimation";
+import { BASE_URL } from "../../constants/constants";
 
 const Nav: React.FC = () => {
   const {handleLinkClick} = useLinkAnimation([".nav-link" ],AnimationType.SlideIn, 250, 250);
@@ -11,7 +12,7 @@ const Nav: React.FC = () => {
           <li className="nav-link transition-transform transform -translate-y-full duration-1000 ">
             <button
               className="block p-4  font-semibold cursor-pointer hover:scale-110 text-opacity-75 text-whiteBlue"
-              onClick={(event) => handleLinkClick("welcome")}
+              onClick={() => handleLinkClick(BASE_URL)}
             >
               Home
             </button>
