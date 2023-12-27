@@ -101,13 +101,13 @@ const Project: React.FC = () => {
     return (
       selectedProject && (
         <div className="text-white flex justify-center flex-col mt-20 overflow-hidden">
-          <h1 className="text-center lg:text-9xl">
+          <h2 className="text-center mb-5 text-5xl lg:text-9xl">
             <TextTypingEffect
               text={selectedProject.title}
               durationInMs={100}
               onComplete={() => setIsTypingComplete(true)}
             />
-          </h1>
+          </h2>
           <div
             ref={corouselRef}
             className="max-w-4x1 mx-auto transform ease-in-out translate-y-full duration-1000"
