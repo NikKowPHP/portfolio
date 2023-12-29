@@ -29,7 +29,7 @@ const Nav: React.FC = () => {
     home: { link: "welcome", path: "Home" },
     about: { link: "about", path: "About" },
     projects: { link: "projects", path: "Projects" },
-    contact: { link: "contact", path: "Projects" },
+    contact: { link: "contact", path: "Contact" },
   };
 
   const handleClick = (link: string) => {
